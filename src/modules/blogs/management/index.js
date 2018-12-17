@@ -1,0 +1,217 @@
+import React from 'react';
+import Table from 'antd/lib/table';
+import Divider from 'antd/lib/divider';
+import Input from 'antd/lib/input';
+import Button from 'antd/lib/button';
+import Select from 'antd/lib/select';
+import Popconfirm from 'antd/lib/popconfirm';
+import message from 'antd/lib/message';
+import Modal from 'antd/lib/modal';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { injectIntl, FormattedMessage } from 'react-intl';
+import { getBlogList, modifyBlog, deleteBlog } from '../BlogServices';
+import { initCategories, setPost } from '../blogReudux';
+
+const Option = Select.Option;
+const STATUS_PUBLIC = 1;
+const STATUS_PRIVATE = 0;
+const PAGE_SIZE = 10;
+
+class BlogWrapper extends React.PureComponent {
+  state = { selected: [], content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: { categoryId: '_ALL_' } }
+
+  columns = getColumns(this)
+
+  t = (id, values) => (this.props.intl.formatMessage({ id }, values))
+
+  fetch = (page = this.state.number, size = this.state.size, query = this.state.query) => {
+    return getBlogList({ page, size, key: query.key ? query.key.trim() : undefined, categoryId: query.categoryId === '_ALL_' ? undefined : query.categoryId })
+      .then((data) => {
+        this.setState({ ...data, selected: [] });
+      })
+      .catch(() => { message.error(this.t('ERROR')) })
+  }
+
+  onOpenAdd = () => { this.props.history.push('/blog/write') }
+
+  onOpenModify = (item, e) => {
+    e.preventDefault();
+    this.props.setPost(item);
+    this.props.history.push(`/blog/modify?post=${item.id}`)
+  }
+
+  onOpenView = (item, e) => {
+    e.preventDefault();
+    this.props.setPost(item);
+    this.props.history.push(`/blog?post=${item.id}`)
+  }
+
+  onChangeStatus = (item, value) => {
+    modifyBlog({ ...item, status: value })
+      .then(this.fetch)
+      .catch(this.showError)
+  }
+
+  onDelete = ({ id }) => {
+    deleteBlog(id)
+      .then(this.fetch)
+      .catch(this.showError)
+  }
+
+  onDeleteSelected = () => {
+    Modal.confirm({
+      title: 'Confirm',
+      content: 'Bla bla ...',
+      okText: 'OK',
+      cancelText: 'Cancel',
+    });
+  }
+
+  onSelection = (_, selectedRows) => {
+    this.setState({ selected: selectedRows });
+  }
+
+  showError = () => {
+    message.error(<span>Something error! Please try again.</span>);
+  }
+
+  onChangeCategory = (value) => {
+    this.setState({ query: { ...this.state.query, categoryId: value } },
+      () => {
+        this.fetch(0)
+      })
+  }
+
+  onSearch = (value) => {
+    this.setState({ query: { ...this.state.query, key: value } },
+      () => {
+        this.fetch(0)
+      })
+  }
+
+  showSizeChanger = (current, pageSize) => {
+    this.fetch(current - 1, pageSize);
+  }
+
+  componentDidMount() {
+    this.props.initCategories();
+    this.fetch();
+  }
+
+  render() {
+    const { categories } = this.props;
+    const { content, selected } = this.state;
+    const showNumberDelete = selected && selected.length ? true : false;
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="table-toolbar">
+              <span className="toolbar">
+                <Select
+                  style={{ minWidth: 140 }}
+                  onChange={this.onChangeCategory}
+                  value={this.state.query.categoryId}
+                  placeholder={this.t('SELECT_BLOG_CATEGORY')}>
+                  <Select.Option key={"_ALL_"} value="_ALL_"><FormattedMessage id="ALL" /></Select.Option>
+                  {categories.map(category => (<Option key={category.id} value={category.id}>{category.title}</Option>))}
+                </Select>
+                <Input.Search
+                  placeholder={this.t('SEARCH')}
+                  ref={(ref) => { this.search = ref }}
+                  onSearch={this.onSearch} />
+                <Button type="primary" onClick={() => { this.search.onSearch() }}><FormattedMessage id="ACT_SEARCH" /></Button>
+              </span>
+              <span className="toolbar-right">
+                <span className="toolbar">
+                  <Button type="danger" onClick={this.onDeleteSelected} disabled={!showNumberDelete}>
+                    <FormattedMessage id="ACT_DELETE" />
+                    {showNumberDelete && <span> ( {selected.length} )</span>}
+                  </Button>
+                  <Button type="primary" onClick={this.onOpenAdd}>
+                    <FormattedMessage id="ADD_BLOG" />
+                  </Button>
+                </span>
+              </span>
+            </div>
+            <Table
+              rowKey="id"
+              rowSelection={{ onChange: this.onSelection }}
+              columns={this.columns}
+              pagination={{
+                showSizeChanger: true,
+                current: this.state.number + 1,
+                pageSize: this.state.size,
+                total: this.state.totalElements,
+                onChange: this.showSizeChanger,
+                onShowSizeChange: this.showSizeChanger
+              }}
+              dataSource={content} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+const getColumns = (self) => ([
+  {
+    title: <FormattedMessage id="TBL_TITLE" />,
+    dataIndex: 'title',
+  },
+  {
+    title: <FormattedMessage id="TBL_UPDATE_DATE" />,
+    dataIndex: 'updatedDate',
+  },
+  {
+    title: <FormattedMessage id="TBL_STATUS" />,
+    key: 'status',
+    render: (item) =>
+      (
+        <Select value={item.status} onChange={self.onChangeStatus.bind(self, item)}>
+          <Option value={STATUS_PUBLIC}><FormattedMessage id="PUBLIC" /></Option>
+          <Option value={STATUS_PRIVATE}><FormattedMessage id="PRIVATE" /></Option>
+        </Select>
+      )
+  },
+  {
+    title: <FormattedMessage id="ACTION" />,
+    key: "country-action",
+    width: 150,
+    render: (item) => (
+      <span>
+        <a
+          href="/view"
+          onClick={self.onOpenView.bind(self, item)}>
+          <FormattedMessage id="ACT_SHOW" />
+        </a>
+        <Divider type="vertical" />
+        <a href="/modify"
+          onClick={self.onOpenModify.bind(self, item)}>
+          <FormattedMessage id="ACT_MODIFY" />
+        </a>
+        <Divider type="vertical" />
+        <Popconfirm
+          placement="topRight"
+          title={<FormattedMessage id="DELETE_CONFIRM" />}
+          onConfirm={self.onDelete.bind(self, item)}
+          okText={<FormattedMessage id="ACT_DELETE" />}
+          cancelText={<FormattedMessage id="ACT_CANCEL" />}
+        >
+          <a href="/delete"><FormattedMessage id="ACT_DELETE" /></a>
+        </Popconfirm>
+      </span>
+    )
+  }
+])
+
+const mapState = (state) => ({
+  categories: state.blog.categories
+})
+
+const mapDispatch = {
+  initCategories,
+  setPost
+}
+export default withRouter(injectIntl(connect(mapState, mapDispatch)(BlogWrapper)))

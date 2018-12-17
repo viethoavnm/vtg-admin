@@ -1,0 +1,170 @@
+html,
+html a,
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  transition: all 0.3s ease-in-out;
+}
+
+body {
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  color: #72777a;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+  font-weight: 300;
+  color: #3d4142;
+}
+
+p {
+  line-height: 1.9;
+}
+
+.lead {
+  font-size: 18px;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+a {
+  color: #0f9aee;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #0c7bbe;
+}
+
+a:focus {
+  outline: none;
+}
+
+a.text-gray:hover,
+a.text-gray:focus,
+a.text-gray.active {
+  color: #313435 !important;
+}
+
+:focus {
+  outline: none;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.0625);
+}
+
+.loading {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.table-toolbar .toolbar-left {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.table-toolbar .toolbar-left>* {
+  margin-right: 16px;
+}
+
+.table-toolbar .toolbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.table-toolbar .toolbar-right>* {
+  margin-left: 16px;
+}
+
+.table-toolbar .toolbar {
+  display: inline-flex;
+}
+
+.table-toolbar .toolbar>* {
+  margin-right: 8px;
+}
+
+.table-toolbar .toolbar-right .dropdown {
+  min-width: 96px;
+}
+
+.top-spacing {
+  margin-top: 48px;
+}
+
+.form-item-inline {
+  display: flex;
+}
+
+.form-item-inline input:first-child {
+  margin-right: 16px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  z-index: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #a0a0a0;
+}
+
+.ant-form-item {
+  margin-bottom: 16px;
+}
+
+.mgL8 {
+  margin-left: 8px;
+}

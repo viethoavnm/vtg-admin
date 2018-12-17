@@ -1,0 +1,8 @@
+.create-hotel__title {
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-transform: uppercase; }
+
+.create-hotel__right {
+  display: flex;
+  justify-content: flex-end; }
