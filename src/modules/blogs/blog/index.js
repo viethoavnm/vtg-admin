@@ -1,11 +1,11 @@
 import React from 'react';
-import Blog from './Blog';
 import BlogEditable from './BlogEditable';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initCategories, getPost, getPlacesList } from '../blogReudux';
 import * as Services from '../BlogServices';
 import message from 'antd/lib/message';
+import './Blog.css'
 
 class BlogWrapper extends React.Component {
   ready = (mode, search) => {
@@ -24,7 +24,7 @@ class BlogWrapper extends React.Component {
       if (backToList)
         this.props.history.push('/blog-management');
       else
-        this.props.history.push(`/blog?post=${data.id}`);
+        window.location = (`/blog/post?postId=${data.id}`);
 
     }
 
@@ -83,11 +83,7 @@ class BlogWrapper extends React.Component {
           />
         );
       default:
-        return (
-          <Blog
-            blog={blog}
-            categories={categories}
-          />);
+        return null;
     }
   }
 }

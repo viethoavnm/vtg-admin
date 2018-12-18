@@ -51,12 +51,21 @@ class Blog extends React.Component {
     }
   }
 
-  onChange = (key) => (value) => {
-    if (key === 'sbannerContentName')
-      this.setState({ bannerContentName: value.name });
-    if (key === 'rbannerContentName')
-      this.setState({ bannerContentName: null });
-    this.setState({ [key]: value });
+  onChange = (key) => (e) => {
+    switch (key) {
+      case 'sbannerContentName':
+        this.setState({ bannerContentName: e.name });
+        break;
+      case 'rbannerContentName':
+        this.setState({ bannerContentName: null });
+        break;
+      case 'introduction':
+        this.setState({ 'introduction': e.target.value })
+        break;
+      default:
+        this.setState({ [key]: e })
+        break;
+    }
   }
 
   onSubmit = (backToList) => () => {
@@ -127,9 +136,11 @@ class Blog extends React.Component {
           <div className="editable__title"><FormattedMessage id="POST_CONTENT" /></div>
           <FormItem
             label={<FormattedMessage id="INTRODUCTION" />}>
-            <Editor
-              model={introduction}
-              onModelChange={this.onChange('introduction')}
+            <Input.TextArea
+              rows={3}
+              maxLength={256}
+              value={introduction}
+              onChange={this.onChange('introduction')}
             />
           </FormItem>
           <FormItem

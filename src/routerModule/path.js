@@ -17,13 +17,6 @@ export default [{
     },
     {
       hide: true,
-      url: '/blog',
-      title: 'MENU_BLOG',
-      props: { mode: 'VIEW_MODE' },
-      component: 'Blog',
-    },
-    {
-      hide: true,
       url: '/blog/write',
       props: { mode: 'CREATE_MODE' },
       title: 'ADD_BLOG',
