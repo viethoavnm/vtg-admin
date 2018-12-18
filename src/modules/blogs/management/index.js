@@ -7,6 +7,7 @@ import Select from 'antd/lib/select';
 import Popconfirm from 'antd/lib/popconfirm';
 import message from 'antd/lib/message';
 import Modal from 'antd/lib/modal';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -41,21 +42,15 @@ class BlogWrapper extends React.PureComponent {
     this.props.history.push(`/blog/modify?post=${item.id}`)
   }
 
-  onOpenView = (item, e) => {
-    e.preventDefault();
-    this.props.setPost(item);
-    this.props.history.push(`/blog?post=${item.id}`)
-  }
-
   onChangeStatus = (item, value) => {
     modifyBlog({ ...item, status: value })
-      .then(this.fetch)
+      .then(() => { this.fetch() })
       .catch(this.showError)
   }
 
   onDelete = ({ id }) => {
     deleteBlog(id)
-      .then(this.fetch)
+      .then(() => { this.fetch() })
       .catch(this.showError)
   }
 
@@ -108,9 +103,8 @@ class BlogWrapper extends React.PureComponent {
         <div className="row">
           <div className="col-md-12">
             <div className="table-toolbar">
-              <span className="toolbar">
+              <span className="toolbar" style={{ width: '50%' }}>
                 <Select
-                  style={{ minWidth: 140 }}
                   onChange={this.onChangeCategory}
                   value={this.state.query.categoryId}
                   placeholder={this.t('SELECT_BLOG_CATEGORY')}>
@@ -129,7 +123,7 @@ class BlogWrapper extends React.PureComponent {
                     <FormattedMessage id="ACT_DELETE" />
                     {showNumberDelete && <span> ( {selected.length} )</span>}
                   </Button>
-                  <Button type="primary" onClick={this.onOpenAdd}>
+                  <Button type="primary" onClick={this.onOpenAdd} disabled={!!showNumberDelete}>
                     <FormattedMessage id="ADD_BLOG" />
                   </Button>
                 </span>
@@ -162,14 +156,20 @@ const getColumns = (self) => ([
   },
   {
     title: <FormattedMessage id="TBL_UPDATE_DATE" />,
-    dataIndex: 'updatedDate',
+    dataIndex: 'modifiedDate',
+    render: (value) => (moment(value).format('ll')),
+    width: 120,
   },
   {
     title: <FormattedMessage id="TBL_STATUS" />,
     key: 'status',
+    width: 120,
     render: (item) =>
       (
-        <Select value={item.status} onChange={self.onChangeStatus.bind(self, item)}>
+        <Select
+          value={item.status}
+          style={{ width: 110 }}
+          onChange={self.onChangeStatus.bind(self, item)}>
           <Option value={STATUS_PUBLIC}><FormattedMessage id="PUBLIC" /></Option>
           <Option value={STATUS_PRIVATE}><FormattedMessage id="PRIVATE" /></Option>
         </Select>
@@ -178,12 +178,10 @@ const getColumns = (self) => ([
   {
     title: <FormattedMessage id="ACTION" />,
     key: "country-action",
-    width: 150,
+    width: 128,
     render: (item) => (
       <span>
-        <a
-          href="/view"
-          onClick={self.onOpenView.bind(self, item)}>
+        <a href={`/blog/post?postId=${item.id}`}>
           <FormattedMessage id="ACT_SHOW" />
         </a>
         <Divider type="vertical" />

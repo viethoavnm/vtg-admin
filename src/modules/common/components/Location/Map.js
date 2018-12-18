@@ -2,7 +2,6 @@ import React from 'react';
 import {
   withScriptjs,
   withGoogleMap,
-  Marker,
   GoogleMap
 } from 'react-google-maps';
 
