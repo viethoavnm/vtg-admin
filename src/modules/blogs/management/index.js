@@ -1,18 +1,20 @@
 import React from 'react';
-import Table from 'antd/lib/table';
-import Divider from 'antd/lib/divider';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
-import Select from 'antd/lib/select';
-import Popconfirm from 'antd/lib/popconfirm';
-import message from 'antd/lib/message';
-import Modal from 'antd/lib/modal';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { getBlogList, modifyBlog, deleteBlog } from '../BlogServices';
 import { initCategories, setPost } from '../blogReudux';
+import {
+  message,
+  Modal,
+  Popconfirm,
+  Select,
+  Button,
+  Input,
+  Divider,
+  Table
+} from 'antd';
 
 const Option = Select.Option;
 const STATUS_PUBLIC = 1;
@@ -44,22 +46,28 @@ class BlogWrapper extends React.PureComponent {
 
   onChangeStatus = (item, value) => {
     modifyBlog({ ...item, status: value })
-      .then(() => { this.fetch() })
+      .then(() => {
+        message.success(this.t('BLOG_UPDATE_DONE'))
+        this.fetch()
+      })
       .catch(this.showError)
   }
 
   onDelete = ({ id }) => {
     deleteBlog(id)
-      .then(() => { this.fetch() })
+      .then(() => {
+        message.success(this.t('BLOG_DELETE_DONE'));
+        this.fetch();
+      })
       .catch(this.showError)
   }
 
   onDeleteSelected = () => {
     Modal.confirm({
-      title: 'Confirm',
-      content: 'Bla bla ...',
-      okText: 'OK',
-      cancelText: 'Cancel',
+      title: this.t('ACT_DELETE'),
+      content: this.t('BLOG_DELETE_POST'),
+      okText: this.t('ACT_DELETE'),
+      cancelText: this.t('ACT_CANCEL')
     });
   }
 
@@ -192,7 +200,7 @@ const getColumns = (self) => ([
         <Divider type="vertical" />
         <Popconfirm
           placement="topRight"
-          title={<FormattedMessage id="DELETE_CONFIRM" />}
+          title={<FormattedMessage id="BLOG_DELETE_POST" />}
           onConfirm={self.onDelete.bind(self, item)}
           okText={<FormattedMessage id="ACT_DELETE" />}
           cancelText={<FormattedMessage id="ACT_CANCEL" />}

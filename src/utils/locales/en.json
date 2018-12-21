@@ -128,5 +128,8 @@
   "GOOGLE_LINK": "Đường dẫn Google +",
   "ERROR": "Lỗi !",
   "ALL": "Tất cả",
-  "CERT": "Giấy phép kinh doanh"
+  "CERT": "Giấy phép kinh doanh",
+  "BLOG_DELETE_POST": "Bạn có chắc chắn muốn xóa bài viết này?",
+  "BLOG_DELETE_DONE": "Bạn đã xóa bài viết thành công!",
+  "BLOG_UPDATE_DONE": "Bạn đã xóa bài viết thành công!"
 }
