@@ -1,9 +1,10 @@
 import React from 'react';
 import { login } from './LoginServices';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import common from '../common';
-import './Login.css';
+import injectIntl from 'intl';
+import './Login.less';
 
 const { Actions } = common
 const FormItem = Form.Item;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { initCategories, getPost, getPlacesList } from '../blogReudux';
 import * as Services from '../BlogServices';
 import { message } from 'antd';
-import './Blog.css'
+import './Blog.less'
 
 class BlogWrapper extends React.Component {
   ready = (mode, search) => {

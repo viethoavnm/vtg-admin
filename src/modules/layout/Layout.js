@@ -4,7 +4,7 @@ import Sider from '../common/components/Sider';
 import Footer from '../common/components/Footer';
 import Loading from '../common/components/Loading';
 import { connect } from 'react-redux';
-import './Layout.css';
+import './Layout.less';
 
 class AppLayout extends React.PureComponent {
   render() {

@@ -6,7 +6,7 @@ import * as services from './settingServices';
 import { getPageList } from './settingRedux';
 import { Table, Divider, Button, Popconfirm, Form, Input, Icon, Modal } from 'antd';
 import { RESOURCES_PATH } from '../common/constants';
-import './Settings.css';
+import './Settings.less';
 
 const FormItem = Form.Item;
 

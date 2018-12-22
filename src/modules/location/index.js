@@ -2,7 +2,7 @@ import React from 'react';
 import Country from './Country';
 import Province from './Province';
 import { injectIntl } from 'react-intl';
-import './Location.css';
+import './Location.less';
 
 const LocationWrapper = ({ intl }) => (
   <div className="container-fluid">

@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomList from './view/CustomList';
-// import * as services from './services';
-import './view/CustomList.css';
+import './view/CustomList.less';
 
 const DEFAULT_PAGE_SIZE = 10;
 

@@ -3,7 +3,7 @@ import { Icon, Form, Input, Button, message } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import Upload from '../common/components/Upload';
 import { createHotel } from './HotelServices';
-import './Hotel.css';
+import './Hotel.less';
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;

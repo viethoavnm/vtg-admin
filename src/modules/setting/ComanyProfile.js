@@ -5,7 +5,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { Button, Form, Input, Icon, message } from 'antd';
 import { setCompanyInfo, getCompanyInfo } from './settingServices';
 import { RESOURCES_PATH } from '../common/constants';
-import './Settings.css';
+import './Settings.less';
 
 const FormItem = Form.Item;
 

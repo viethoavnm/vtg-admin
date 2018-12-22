@@ -1,4 +1,4 @@
-import * as CONST from '../../../utils/constants';
+import * as CONST from 'consts';
 
 export const DEFAULT_LANG = CONST.DEFAULT_LANG;
 export const DEFAULT_THEME = CONST.DEFAULT_THEME;

@@ -1,9 +1,9 @@
 import React from 'react';
-import Upload from '../../common/components/Upload';
-import Editor from '../../common/components/Editor';
-import Tags from '../../common/components/Tags';
+import Tags from 'components/Tags';
+import Upload from 'components/Upload';
+import Editor from 'components/Editor';
 import { connect } from 'react-redux';
-import { normFile } from '../../../utils';
+import { normFile } from 'utils';
 import { injectIntl } from 'react-intl';
 import {
   Input,
@@ -48,25 +48,25 @@ class Blog extends React.Component {
     const { places, categories, form } = this.props;
     const { tagList, content } = this.state;
     const { getFieldDecorator } = form;
-    const placeholder = this.t('INPUT_INFORMATION');
+    const placeholder = this.props.t('INPUT_INFORMATION');
     return (
       <Form>
         <div className="editable container-fluid">
           <div className="row">
             <div className="col-9">
-              <div className="editable__title">{this.t('POST_INFO')}</div>
+              <div className="editable__title">{this.props.t('POST_INFO')}</div>
               <FormItem
                 {...formItemLayout}
-                label={this.t('TITLE')}>
+                label={this.props.t('TITLE')}>
                 {getFieldDecorator('title',
-                  { rules: [{ required: true, message: this.t('INPUT_REQUIRED') }] })(
+                  { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
                     <Input placeholder={placeholder} maxLength={256} />)}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label={this.t('CATEGORY')}>
+                label={this.props.t('CATEGORY')}>
                 {getFieldDecorator('categoryId',
-                  { rules: [{ required: true, message: this.t('INPUT_REQUIRED') }] })(
+                  { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
                     <Select
                       placeholder={placeholder}
                       style={{ width: 200 }}>
@@ -76,9 +76,9 @@ class Blog extends React.Component {
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label={this.t('PLACE_NAME')}>
+                label={this.props.t('PLACE_NAME')}>
                 {getFieldDecorator('provinceId',
-                  { rules: [{ required: true, message: this.t('INPUT_REQUIRED') }] })(
+                  { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
                     <Select
                       placeholder={placeholder}
                       style={{ width: 200 }}>
@@ -88,60 +88,60 @@ class Blog extends React.Component {
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label={this.t('TAGS')}>
+                label={this.props.t('TAGS')}>
                 <Tags tags={tagList.filter((tag) => (tag && true))} onChange={this.onTagChange} />
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                help={this.t('PRIVATE_NOTICE')}
-                label={this.t('STATUS')}>
+                help={this.props.t('PRIVATE_NOTICE')}
+                label={this.props.t('STATUS')}>
                 {getFieldDecorator('status',
                   { initialValue: STATUS_PRIVATE })(
                     <RadioGroup>
-                      <Radio value={STATUS_PUBLIC}>{this.t('PUBLIC')}</Radio>
-                      <Radio value={STATUS_PRIVATE}>{this.t('PRIVATE')}</Radio>
+                      <Radio value={STATUS_PUBLIC}>{this.props.t('PUBLIC')}</Radio>
+                      <Radio value={STATUS_PRIVATE}>{this.props.t('PRIVATE')}</Radio>
                     </RadioGroup>)}
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label={this.t('AUTHOR')}>
+                label={this.props.t('AUTHOR')}>
                 {getFieldDecorator('author',
                   { initialValue: this.props.user })(
                     <Input readOnly style={{ width: 200 }} />)}
               </FormItem>
             </div>
             <div className="col-3 editable__upload">
-              <div className="editable__title">{this.t('POST_BANNER')}</div>
-              <FormItem label={this.t('BANNER')}>
+              <div className="editable__title">{this.props.t('POST_BANNER')}</div>
+              <FormItem label={this.props.t('BANNER')}>
                 {getFieldDecorator('bannerContentName', {
                   valuePropName: 'fileList',
                   getValueFromEvent: normFile,
-                  rules: [{ required: true, message: this.t('INPUT_REQUIRED') }]
+                  rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
                 })(
                   <Upload
                     listType="picture-card">
                     <Icon type="plus" />
-                    {this.t('ACT_UPLOAD')}
+                    {this.props.t('ACT_UPLOAD')}
                   </Upload>)}
               </FormItem>
             </div>
           </div>
           <Divider />
           <div className="editable__editor">
-            <div className="editable__title">{this.t('POST_CONTENT')}</div>
+            <div className="editable__title">{this.props.t('POST_CONTENT')}</div>
             <FormItem
-              label={this.t('INTRODUCTION')}>
+              label={this.props.t('INTRODUCTION')}>
               {getFieldDecorator('introduction',
-                { rules: [{ required: true, message: this.t('INPUT_REQUIRED') }] })(
+                { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
                   <Input.TextArea
                     rows={3}
                     minLength={30}
                     maxLength={300}
-                    placeholder={this.t('EDITOR_PLACEHOLDER')}
+                    placeholder={this.props.t('EDITOR_PLACEHOLDER')}
                   />)}
             </FormItem>
             <FormItem
-              label={this.t('CONTENT')}>
+              label={this.props.t('CONTENT')}>
               <Editor
                 fullToolbar
                 model={content}
@@ -151,8 +151,8 @@ class Blog extends React.Component {
             </FormItem>
           </div>
           <div className="editable__footer">
-            <Button type="primary" onClick={this.onSubmit}>{this.t('ACT_SAVE')}</Button>
-            <Button type="primary" className="mgL8" onClick={this.onSubmitAndBack}>{this.t('ACT_SAVE_N_BACK')}</Button>
+            <Button type="primary" onClick={this.onSubmit}>{this.props.t('ACT_SAVE')}</Button>
+            <Button type="primary" className="mgL8" onClick={this.onSubmitAndBack}>{this.props.t('ACT_SAVE_N_BACK')}</Button>
           </div>
         </div>
       </Form >);
