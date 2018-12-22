@@ -1,6 +1,6 @@
 import React from 'react';
-import PATH from '../../../../routerModule/path';
-import { Icon } from 'antd';
+import { Icon, Layout } from 'antd';
+import PATH from 'routerModule/path';
 import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import Avatar from './Avatar';
@@ -44,7 +44,7 @@ class AppHeader extends React.PureComponent {
   render() {
     const { icon, title } = this.state;
     return (
-      <header className="header">
+      <Layout.Header className="header">
         <ul className="header__left">
           <li className="header__title">
             {icon && <Icon type={icon} />}
@@ -54,7 +54,7 @@ class AppHeader extends React.PureComponent {
         <ul className="header__right">
           <li><Avatar /></li>
         </ul>
-      </header>
+      </Layout.Header >
     )
   }
 }

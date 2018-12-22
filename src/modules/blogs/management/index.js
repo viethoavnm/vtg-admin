@@ -166,7 +166,7 @@ const getColumns = (self) => ([
     title: <FormattedMessage id="TBL_UPDATE_DATE" />,
     dataIndex: 'modifiedDate',
     render: (value) => (moment(value).format('ll')),
-    width: 120,
+    width: 128,
   },
   {
     title: <FormattedMessage id="TBL_STATUS" />,
@@ -186,7 +186,7 @@ const getColumns = (self) => ([
   {
     title: <FormattedMessage id="ACTION" />,
     key: "country-action",
-    width: 128,
+    width: 148,
     render: (item) => (
       <span>
         <a href={`/blog/post?postId=${item.id}`}>

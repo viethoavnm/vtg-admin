@@ -1,13 +1,14 @@
 import React from 'react';
+import { Layout } from 'antd';
 
 export default class AppFooter extends React.Component {
   render() {
-    return (<footer>
+    return (<Layout.Footer>
       <span>Copyright © 2018 Designed by&nbsp;
         <a
           href="https://github.com/viethoavnm"
           title="viethoavnm">viethoavnm
           </a>. All rights reserved.</span>
-    </footer>);
+    </Layout.Footer>);
   }
 }
