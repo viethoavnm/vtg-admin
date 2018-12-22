@@ -1,17 +1,10 @@
 import React from 'react';
-import Table from 'antd/lib/table';
-import Divider from 'antd/lib/divider';
-import Button from 'antd/lib/button';
-import Popconfirm from 'antd/lib/popconfirm';
-import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
-import Icon from 'antd/lib/icon';
-import Modal from 'antd/lib/modal';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Upload from '../common/components/Upload';
 import * as services from './settingServices';
 import { getPageList } from './settingRedux';
+import { Table, Divider, Button, Popconfirm, Form, Input, Icon, Modal } from 'antd';
 import { RESOURCES_PATH } from '../common/constants';
 import './Settings.css';
 

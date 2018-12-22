@@ -1,16 +1,12 @@
 import React from 'react';
-import Icon from 'antd/lib/icon';
-import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
-import Message from 'antd/lib/message';
-import TextArea from 'antd/lib/input/TextArea';
+import { Icon, Form, Input, Button, message } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import Upload from '../common/components/Upload';
 import { createHotel } from './HotelServices';
 import './Hotel.css';
 
 const FormItem = Form.Item;
+const TextArea = Input.TextArea;
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -39,11 +35,11 @@ class CreateHotel extends React.Component {
       .then(() => {
         this.form.props.form.resetFields();
         this.setState({ loading: false })
-        Message.success('Tạo thành công!')
+        message.success('Tạo thành công!')
       })
       .catch(() => {
         this.setState({ loading: false })
-        Message.error('Tạo thất bại!')
+        message.error('Tạo thất bại!')
       });
   }
 

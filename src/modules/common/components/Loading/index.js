@@ -1,5 +1,5 @@
 import React from 'react';
-import Spin from 'antd/lib/spin';
+import { Spin } from 'antd';
 
 export default (props) => {
   return (<div className="loading">

@@ -1,12 +1,7 @@
 import React from 'react';
-import Form from 'antd/lib/form';
-import Icon from 'antd/lib/icon';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
-import Checkbox from 'antd/lib/checkbox';
-import message from 'antd/lib/message';
 import { login } from './LoginServices';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import common from '../common';
 import './Login.css';
 

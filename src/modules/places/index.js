@@ -1,13 +1,7 @@
 import React from 'react';
-import Input from 'antd/lib/input';
-import Table from 'antd/lib/table';
-import Divider from 'antd/lib/divider';
-import Button from 'antd/lib/button';
-import Popconfirm from 'antd/lib/popconfirm';
-import message from 'antd/lib/message';
-import Modal from './PlaceModal';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { getPlaceList, removePlace } from './services';
+import { Input, Table, Divider, Button, Popconfirm, message, Modal } from 'antd';
 import './Places.css';
 
 const PAGE_SIZE = 10;

@@ -1,7 +1,5 @@
 import React from 'react';
-import Icon from 'antd/lib/icon';
-import Layout from 'antd/lib/layout';
-import Menu from 'antd/lib/menu';
+import { Icon, Layout, Menu } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import PATH from '../../../../routerModule/path';
@@ -54,7 +52,7 @@ class AppSlider extends React.Component {
       >
         <div className="logo">
           <a href="/admin">
-          <h2 style={{color: 'white'}}>Spetrip<span style={{color: 'cornflowerblue'}}>.com</span></h2>
+            <h2 style={{ color: 'white' }}>Spetrip<span style={{ color: 'cornflowerblue' }}>.com</span></h2>
           </a>
         </div>
         <Menu

@@ -1,15 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import Input from 'antd/lib/input'
-import Table from 'antd/lib/table';
-import Select from 'antd/lib/select';
-import Button from 'antd/lib/button';
-import Divider from 'antd/lib/divider';
-import message from 'antd/lib/message';
-import Popconfirm from 'antd/lib/popconfirm';
-import Modal from './CategoryModal';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { getBlogCategories, modifyCategory, deleteCategory } from '../BlogServices';
+import { Input, Table, Select, Button, Divider, message, Popconfirm, Modal } from 'antd';
 
 const Option = Select.Option;
 const STATUS_PUBLIC = 1;

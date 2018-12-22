@@ -10,11 +10,26 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
+const lessToJS = require('less-vars-to-js');
+const fs = require('fs')
 const paths = require('./paths');
 
 const publicPath = '/';
 const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
+
+const themeVariables = lessToJS(
+  fs.readFileSync(
+    path.resolve(__dirname, './antd-custom.less'),
+    'utf8'
+  )
+)
+
+const pathResolves = require('../jsconfig.json').compilerOptions;
+const alias = {};
+Object.keys(pathResolves.paths).forEach((key) => {
+  alias[key] = pathResolves.paths[key][0];
+})
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -79,10 +94,8 @@ module.exports = {
               plugins: [
                 ["import", { "libraryName": "antd", "style": true, "libraryDirectory": "lib" }, "ant"],
                 ["module-resolver", {
-                  "root": ["./src/App"],
-                  "alias": {
-                    "test": "./test",
-                  }
+                  "root": [pathResolves.baseUrl],
+                  "alias": alias
                 }]
               ],
               cacheDirectory: true,
@@ -130,11 +143,7 @@ module.exports = {
               {
                 loader: require.resolve('less-loader'),
                 options: {
-                  modifyVars: {
-                    '@primary-color': '#1DA57A',
-                    '@link-color': '#1DA57A',
-                    '@border-radius-base': '2px',
-                  },
+                  modifyVars: themeVariables,
                   javascriptEnabled: true
                 },
               },

@@ -1,15 +1,10 @@
 import React from 'react';
-import Modal from 'antd/lib/modal';
-import Button from 'antd/lib/button';
-import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
-import Icon from 'antd/lib/icon';
-import message from 'antd/lib/message';
 import { normFile } from '../../utils';
 import { Upload } from '../common/components';
 import { FormattedMessage } from 'react-intl';
 import { createPlace, updatePlace } from './services'
 import { RESOURCES_PATH } from '../common/constants';
+import { Modal, Button, Form, Input, Icon, message } from 'antd';
 
 const FormItem = Form.Item;
 const formItemLayout = {

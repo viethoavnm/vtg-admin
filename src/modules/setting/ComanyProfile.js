@@ -1,12 +1,8 @@
 import React from 'react';
-import Button from 'antd/lib/button';
-import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
-import Icon from 'antd/lib/icon';
-import Message from 'antd/lib/message';
 import Upload from '../common/components/Upload';
 import Location from '../common/components/Location';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { Button, Form, Input, Icon, message } from 'antd';
 import { setCompanyInfo, getCompanyInfo } from './settingServices';
 import { RESOURCES_PATH } from '../common/constants';
 import './Settings.css';
@@ -25,8 +21,8 @@ class CompanyProfile extends React.PureComponent {
         }
         console.log("#Submit:", data);
         setCompanyInfo(data)
-          .then(() => { Message.success('Updated!') })
-          .catch(() => { Message.error('Update failed!') })
+          .then(() => { message.success('Updated!') })
+          .catch(() => { message.error('Update failed!') })
       }
     });
   }

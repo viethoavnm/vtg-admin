@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from 'antd/lib/icon';
 import PATH from '../../../../routerModule/path';
+import { Icon } from 'antd';
 import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import Avatar from './Avatar';

@@ -1,4 +1,3 @@
-import './CSS/Antd.css';
 import './CSS/Custom.css';
 
 export { default as Loading } from './Loading';

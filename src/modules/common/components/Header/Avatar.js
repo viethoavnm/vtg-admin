@@ -1,8 +1,6 @@
 import React from 'react';
-import Avatar from 'antd/lib/avatar';
-import Popover from 'antd/lib/popover';
-import Icon from 'antd/lib/icon';
 import { connect } from 'react-redux';
+import { Avatar, Popover, Icon } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
 const AvatarHolder = ({ user }) => {

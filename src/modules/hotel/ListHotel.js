@@ -1,6 +1,5 @@
 import React from 'react';
-import Button from 'antd/lib/button';
-import Table from 'antd/lib/table';
+import { Button, Table } from 'antd';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 

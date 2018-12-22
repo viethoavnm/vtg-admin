@@ -1,11 +1,7 @@
 import React from 'react';
-import Modal from 'antd/lib/modal';
-import Button from 'antd/lib/button';
-import Form from 'antd/lib/form';
-import Input from 'antd/lib/input';
-import message from 'antd/lib/message'
 import { FormattedMessage } from 'react-intl';
 import { createCountry, updateCountry } from './services';
+import { Modal, Button, Form, Input, message } from 'antd';
 
 const FormItem = Form.Item;
 const formItemLayout = {

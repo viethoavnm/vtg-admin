@@ -1,8 +1,5 @@
 import React from 'react';
-import Tag from 'antd/lib/tag';
-import Input from 'antd/lib/input';
-import Tooltip from 'antd/lib/tooltip';
-import Icon from 'antd/lib/icon';
+import { Tag, Input, Tooltip, Icon } from 'antd';
 
 const COLOURS = ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'];
 

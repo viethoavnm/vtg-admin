@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initCategories, getPost, getPlacesList } from '../blogReudux';
 import * as Services from '../BlogServices';
-import message from 'antd/lib/message';
+import { message } from 'antd';
 import './Blog.css'
 
 class BlogWrapper extends React.Component {

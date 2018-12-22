@@ -1,9 +1,5 @@
 import React from 'react';
-import Input from 'antd/lib/input';
-import Button from 'antd/lib/button';
-import Modal from 'antd/lib/modal';
-import Form from 'antd/lib/form';
-import message from 'antd/lib/message';
+import { Input, Button, Modal, Form, message } from 'antd';
 import { createCategory, modifyCategory } from '../BlogServices'
 import { FormattedMessage } from 'react-intl';
 

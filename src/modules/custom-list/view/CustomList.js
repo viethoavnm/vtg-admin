@@ -1,8 +1,5 @@
 import React from 'react';
-import Table from 'antd/lib/table';
-import Divider from 'antd/lib/divider';
-import Button from 'antd/lib/button';
-import Popconfirm from 'antd/lib/popconfirm';
+import { Table, Divider, Button, Popconfirm } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
 class CustomList extends React.Component {

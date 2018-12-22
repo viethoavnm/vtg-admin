@@ -19,16 +19,31 @@ const shouldUseRelativeAssetPaths = publicPath === './';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const publicUrl = publicPath.slice(0, -1);
 const env = getClientEnvironment(publicUrl);
+const lessToJS = require('less-vars-to-js');
+const fs = require('fs')
 
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
 
+const themeVariables = lessToJS(
+  fs.readFileSync(
+    path.resolve(__dirname, './antd-custom.less'),
+    'utf8'
+  )
+)
+
+const pathResolves = require('../jsconfig.json').compilerOptions;
+const alias = {};
+Object.keys(pathResolves.paths).forEach((key) => {
+  alias[key] = pathResolves.paths[key][0];
+})
+
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
-  ? 
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
+  ?
+  { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
 
 module.exports = {
@@ -68,7 +83,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -93,10 +108,8 @@ module.exports = {
               plugins: [
                 ["import", { "libraryName": "antd", "style": true, "libraryDirectory": "lib" }, "ant"],
                 ["module-resolver", {
-                  "root": ["./src/App"],
-                  "alias": {
-                    "test": "./test",
-                  }
+                  "root": [pathResolves.baseUrl],
+                  "alias": alias
                 }]
               ],
               compact: true,
@@ -133,7 +146,7 @@ module.exports = {
                               '>1%',
                               'last 4 versions',
                               'Firefox ESR',
-                              'not ie < 9', 
+                              'not ie < 9',
                             ],
                             flexbox: 'no-2009',
                           }),
@@ -158,11 +171,7 @@ module.exports = {
               {
                 loader: require.resolve('less-loader'),
                 options: {
-                  modifyVars: {
-                    '@primary-color': '#1DA57A',
-                    '@link-color': '#1DA57A',
-                    '@border-radius-base': '2px',
-                  },
+                  modifyVars: themeVariables,
                   javascriptEnabled: true
                 },
               },
