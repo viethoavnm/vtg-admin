@@ -21,11 +21,11 @@ class BlogWrapper extends React.Component {
 
   onSubmit = (item, backToList = false) => {
     const success = (data) => {
+      message.success()
       if (backToList)
         this.props.history.push('/blog-management');
       else
         window.location = (`/blog/post?postId=${data.id}`);
-
     }
 
     function trimImages() {

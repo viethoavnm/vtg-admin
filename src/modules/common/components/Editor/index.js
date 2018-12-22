@@ -7,6 +7,7 @@ import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'font-awesome/css/font-awesome.css';
 import $ from 'jquery';
 import { RESOURCES_PATH, BASE_URL } from '../../constants';
+import { injectIntl } from 'react-intl'
 import './Editor.css';
 
 window.$ = $;
@@ -17,7 +18,7 @@ const Editor = (props) =>
   (<FroalaEditor tag='textarea'
     {...props}
     config={{
-      placeholderText: 'Edit Your Content Here!',
+      placeholderText: props.intl.formatMessage({ id: 'EDITOR_PLACEHOLDER' }),
       toolbarButtons: props.fullToolbar ? FULL_TOOLBAR : SHORT_TOOLBAR,
       charCounterCount: false,
       imageUploadURL: UPLOAD_URL,
@@ -35,5 +36,5 @@ const Editor = (props) =>
       }
     }} />)
 
-export default Editor;
+export default injectIntl(Editor);
 
