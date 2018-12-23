@@ -1,7 +1,8 @@
 import React from 'react';
+import Modal from './ProvinceModal';
 import { FormattedMessage } from 'react-intl';
 import { getProvinceList, getAllCountry, deleteProvince } from './services';
-import { Input, Table, Divider, Button, Popconfirm, message, Select, Modal } from 'antd';
+import { Input, Table, Divider, Button, Popconfirm, message, Select } from 'antd';
 
 const PAGE_SIZE = 10;
 

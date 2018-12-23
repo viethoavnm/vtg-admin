@@ -1,7 +1,8 @@
 import React from 'react';
+import Modal from './PlaceModal';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { getPlaceList, removePlace } from './services';
-import { Input, Table, Divider, Button, Popconfirm, message, Modal } from 'antd';
+import { Input, Table, Divider, Button, Popconfirm, message } from 'antd';
 import './Places.less';
 
 const PAGE_SIZE = 10;

@@ -1,7 +1,8 @@
 import React from 'react';
+import Modal from './CountryModal';
 import { FormattedMessage } from 'react-intl';
 import { getCountryList, deleteCountry } from './services';
-import { Input, Table, Divider, Popconfirm, Button, Modal, message } from 'antd';
+import { Input, Table, Divider, Popconfirm, Button, message } from 'antd';
 
 const PAGE_SIZE = 10;
 
