@@ -3,6 +3,7 @@
   "MENU_BLOG": "Blog",
   "MENU_BLOG_MANAGEMENT": "Quản lý blog",
   "MENU_BLOG_CATEGORY": "Danh mục blog",
+  "MENU_BLOG_COPYRIGHT": "Bản quyền",
   "MENU_SETTING": "Cài đặt",
   "MENU_LOCATION": "Vị trí địa lý",
   "MENU_TOURIST_PLACES": "Địa điểm du lịch",
@@ -130,6 +131,7 @@
   "YOUTUBE_LINK": "Đường dẫn Youtube",
   "GOOGLE_LINK": "Đường dẫn Google +",
   "ERROR": "Lỗi !",
+  "DONE": "Xong",
   "ALL": "Tất cả",
   "CERT": "Giấy phép kinh doanh",
   "BLOG_DELETE_POST": "Bạn có chắc chắn muốn xóa bài viết này?",
@@ -216,5 +218,6 @@
   "PLACE_ADD_DONE": "Bạn đã thêm địa điểm thành công",
   "PLACE_ADD_EXITS": "Thêm địa điểm thất bại, địa điểm đã có trong danh sách",
   "PLACE_MODIFY_EXITS": "Sửa địa điểm thất bại, địa điểm đã có trong danh sách",
-  "SUGGEST_SIZE_ADS": "Ảnh nên có kích thước: 1024px * 768px"
+  "SUGGEST_SIZE_ADS": "Ảnh nên có kích thước: 1024px * 768px",
+  "BLOG_COPYRIGHT": "Quản lý bản quyền bài viết"
 }

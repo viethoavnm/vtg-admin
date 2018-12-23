@@ -43,3 +43,15 @@ export function deleteBlog(id) {
 export function getPlaceList() {
   return axios.get('api/province/get-all');
 }
+
+export function setCopyrightInfo(data) {
+  return axios.put('api/setting/', {
+    id: 2,
+    name: 'BlogCopyright',
+    value: data
+  })
+}
+
+export function getCopyrightInfo() {
+  return axios.get('api/setting/2');
+}

@@ -16,6 +16,11 @@ export default [{
       component: 'BlogCategory',
     },
     {
+      url: '/blogs/copyright',
+      title: 'MENU_BLOG_COPYRIGHT',
+      component: 'BlogCopyright',
+    },
+    {
       hide: true,
       url: '/blog/write',
       props: { mode: 'CREATE_MODE' },

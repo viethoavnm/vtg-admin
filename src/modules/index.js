@@ -39,8 +39,8 @@ export default {
     loader: () => import('./blogs/category'),
     loading: Loading
   }),
-  BlogSetting: loadable({
-    loader: () => import('./blogs/setting'),
+  BlogCopyright: loadable({
+    loader: () => import('./blogs/copyright'),
     loading: Loading
   }),
   Setting: loadable({
