@@ -167,5 +167,8 @@
   "POST_REQUIRE_DESCRIPTION_MIN": "Tối thiểu 30 ký tự",
   "POST_REQUIRE_CONTENT": "Tối thiểu 300 ký tự",
   "VIEW_POST": "Xem bài viết",
-  "POST_INPUT_REQUIRED": "Bạn vui lòng nhập các thông tin bắt buộc"
+  "POST_INPUT_REQUIRED": "Bạn vui lòng nhập các thông tin bắt buộc",
+  "SAVE_DRAFT_CONFIRM": "Bạn có muốn lưu bản nháp này không?",
+  "SAVE_DRAFT_UPDATE": "Bạn có muốn lưu lại những thay đổi này không?",
+  "ACT_AGREE": "Đồng ý"
 }

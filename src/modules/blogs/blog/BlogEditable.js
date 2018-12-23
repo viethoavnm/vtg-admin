@@ -3,6 +3,7 @@ import injectIntl from 'intl';
 import Tags from 'components/Tags';
 import Upload from 'components/Upload';
 import Editor from 'components/Editor';
+import Prompt from 'components/Prompt'
 import { normFile } from 'utils';
 import { connect } from 'react-redux';
 import { getBlog, modifyBlog, createBlog } from '../BlogServices';
@@ -25,7 +26,7 @@ const formItemLayout = {
 };
 
 class Blog extends React.Component {
-  state = { content: '', tagList: [], error: false }
+  state = { content: '', tagList: [], error: false, unblock: false }
   t = (id, values) => (this.props.intl.formatMessage({ id }, values))
 
   onContentChange = (content) => {
@@ -36,13 +37,15 @@ class Blog extends React.Component {
     this.setState({ tagList })
   }
 
-  onSaveDraft = () => {
+  onSaveDraft = (noModal) => {
     const values = this.props.form.getFieldsValue();
     this.submit({
       ...values,
       ...this.state, bannerContentName:
-        values.bannerContentName ? values.bannerContentName[0].response.name : null
-    }, false)
+        values.bannerContentName && !!values.bannerContentName.length
+          ? values.bannerContentName[0].response.name
+          : null
+    }, false, noModal)
   }
 
   onSubmit = () => {
@@ -52,7 +55,7 @@ class Blog extends React.Component {
           ...values,
           ...this.state,
           bannerContentName: values.bannerContentName[0].response.name
-        }, true)
+        }, true, true)
       } else if (this.state.content.length <= 300) {
         this.setState({ error: true })
         message.warning(this.t('POST_REQUIRED_CONTENT'));
@@ -69,26 +72,40 @@ class Blog extends React.Component {
     window.history.back();
   }
 
-  submit = (item, pub = false) => {
+  submit = (item, pub = false, noModal) => {
     item.status = pub ? STATUS_PUBLIC : STATUS_PRIVATE;
     if (this.props.addMode)
       createBlog(item)
-        .then(this.redirect)
+        .then((data) => {
+          this.redirect(data, noModal)
+        })
     else
       modifyBlog({ ...this.post, ...item })
-        .then(this.redirect)
+        .then((data) => {
+          this.redirect(data, noModal)
+        })
   }
 
-  redirect = ({ id, status }) => {
-    Modal.confirm({
-      title: this.t(status ? 'POST_SUBMIT_DONE' : 'POST_SAVE_DRAFT'),
-      okText: this.t('VIEW_POST'),
-      cancelText: this.t('ACT_BACK'),
-      onOk: () => { window.open(`/blog/post?postId=${id}`) },
-      onCancel: this.onBack
-    })
+  redirect = ({ id, status }, noModal) => {
+    if (noModal === true) {
+      this.setState({ unblock: true },
+        () => { window.location = `#/blog-management` })
+    } else {
+      Modal.confirm({
+        title: this.t(status ? 'POST_SUBMIT_DONE' : 'POST_SAVE_DRAFT'),
+        okText: this.t('VIEW_POST'),
+        cancelText: this.t('ACT_BACK'),
+        onOk: () => {
+          this.setState({ unblock: true },
+            () => { window.open(`/blog/post?postId=${id}`) })
+        },
+        onCancel: () => {
+          this.setState({ unblock: true },
+            () => { window.location = `#/blog-management` })
+        }
+      })
+    }
   }
-
 
   componentDidMount() {
     if (!this.props.addMode) {
@@ -114,15 +131,29 @@ class Blog extends React.Component {
     }
   }
 
+  back = () => {
+    this.setState({ unblock: true }, this.onBack)
+  }
+
+  routeSave = () => {
+    this.onSaveDraft(true);
+  }
+
   render = () => {
-    const { places, categories, form } = this.props;
-    const { tagList, content } = this.state;
+    const { places, categories, form, addMode } = this.props;
+    const { tagList, content, unblock } = this.state;
     const { getFieldDecorator } = form;
     const placeholder = this.props.t('INPUT_INFORMATION')
     const showUpload = !form.getFieldValue('bannerContentName')
       || (form.getFieldValue('bannerContentName') && !form.getFieldValue('bannerContentName').length);
     return (
       <Form>
+        <Prompt
+          when={!unblock}
+          onOk={this.routeSave}
+          onCancel={this.back}
+          title={this.t(addMode ? 'SAVE_DRAFT_CONFIRM' : 'SAVE_DRAFT_UPDATE')}
+        />
         <div className="editable container-fluid">
           <div className="row">
             <div className="col-9">
