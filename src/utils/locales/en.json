@@ -146,5 +146,11 @@
   "COUNTRY_DELETE_CONFIRM": "Bạn có chắc chắn muốn xóa quốc gia này?",
   "COUNTRY_DELETE_DONE": "Bạn đã xóa quốc gia thành công",
   "COUNTRY_UPDATE_DONE": "Bạn đã sửa quốc gia thành công",
-  "COUNTRY_ADD_DONE": "Bạn đã thêm quốc gia thành công"
+  "COUNTRY_ADD_DONE": "Bạn đã thêm quốc gia thành công",
+  "PROVINCE_ADD_EXITS": "Thêm thành phố thất bại, thành phố đã có trong danh sách",
+  "PROVINCE_MODIFY_EXITS": "Sửa thành phố thất bại, thành phố đã có trong danh sách",
+  "PROVINCE_DELETE_CONFIRM": "Bạn có chắc chắn muốn xóa thành phố này?",
+  "PROVINCE_DELETE_DONE": "Bạn đã xóa thành phố thành công",
+  "PROVINCE_UPDATE_DONE": "Bạn đã sửa thành phố thành công",
+  "PROVINCE_ADD_DONE": "Bạn đã thêm thành phố thành công"
 }

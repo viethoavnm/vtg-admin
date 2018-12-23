@@ -44,7 +44,10 @@ class Province extends React.Component {
 
   onDelete = (item) => {
     deleteProvince(item.id)
-      .then(() => { this.fetch(0) })
+      .then(() => {
+        this.fetch(0);
+        message.success(this.t('PROVINCE_DELETE_DONE'))
+      })
   }
 
   onChangeCountry = (value) => {
@@ -147,7 +150,7 @@ const getProvinceColumns = (self) => ([
         <Divider type="vertical" />
         <Popconfirm
           placement="topRight"
-          title={<FormattedMessage id="DELETE_CONFIRM" />}
+          title={<FormattedMessage id="PROVINCE_DELETE_CONFIRM" />}
           onConfirm={self.onDelete.bind(self, item)}
           okText={<FormattedMessage id="ACT_DELETE" />}
           cancelText={<FormattedMessage id="ACT_CANCEL" />}

@@ -42,11 +42,15 @@ class ProvinceModal extends React.Component {
         delete data.url1
         delete data.url2
         const onSuccess = () => {
-          message.success();
+          message.success(this.props.t(this.props.addMode
+            ? 'PROVINCE_ADD_DONE'
+            : 'PROVINCE_UPDATE_DONE'));
           this.setState({ loading: false }, this.onClose)
         }
         const onFail = () => {
-          message.error();
+          message.error(this.props.t(this.props.addMode
+            ? 'PROVINCE_ADD_EXITS'
+            : 'PROVINCE_MODIFY_EXITS'));
           this.setState({ loading: false })
         }
         if (this.props.addMode)
@@ -115,24 +119,29 @@ class ProvinceModal extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="CITY_NAME" />}>
-            {getFieldDecorator('name', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('name',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Input maxLength={50} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="COUNTRY_NAME" />}>
-            {getFieldDecorator('countryId', { rules: [{ required: true }] })(
-              <Select>
-                {this.props.countries.map(({ name, id }) => (
-                  <Select.Option key={id} value={id}>{name}</Select.Option>
-                ))}
-              </Select>
-            )}
+            {getFieldDecorator('countryId',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Select>
+                  {this.props.countries.map(({ name, id }) => (
+                    <Select.Option key={id} value={id}>{name}</Select.Option>
+                  ))}
+                </Select>
+              )}
           </FormItem>
 
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="SLOGAN" />}>
-            {getFieldDecorator('slogan')(<Input />)}
+            {getFieldDecorator('slogan',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Input maxLength={100} />)}
           </FormItem>
           <FormItem
             style={{ display: 'none' }}
@@ -152,7 +161,7 @@ class ProvinceModal extends React.Component {
             {getFieldDecorator('contentNames', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
             })(
               <Upload listType="picture" multiple>
                 <Button>
@@ -167,7 +176,7 @@ class ProvinceModal extends React.Component {
             {getFieldDecorator('ads1', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
             })(
               <Upload listType="picture" multiple>
                 <Button>
@@ -179,7 +188,7 @@ class ProvinceModal extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_1" />}>
-            {getFieldDecorator('url1', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('url1', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
@@ -187,7 +196,7 @@ class ProvinceModal extends React.Component {
             {getFieldDecorator('ads2', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
             })(
               <Upload listType="picture">
                 <Button>
@@ -199,7 +208,7 @@ class ProvinceModal extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_2" />}>
-            {getFieldDecorator('url2', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('url2', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
