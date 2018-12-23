@@ -29,7 +29,13 @@ class BlogWrapper extends React.PureComponent {
   t = (id, values) => (this.props.intl.formatMessage({ id }, values))
 
   fetch = (page = this.state.number, size = this.state.size, query = this.state.query) => {
-    return getBlogList({ page, size, key: query.key ? query.key.trim() : undefined, categoryId: query.categoryId === '_ALL_' ? undefined : query.categoryId })
+    return getBlogList({
+      page,
+      size,
+      sort: 'modifiedDate,desc',
+      key: query.key ? query.key.trim() : undefined,
+      categoryId: query.categoryId === '_ALL_' ? undefined : query.categoryId
+    })
       .then((data) => {
         this.setState({ ...data, selected: [] });
       })

@@ -1,4 +1,5 @@
 import React from 'react';
+import Prompt from 'components/Prompt';
 import { FormattedMessage } from 'react-intl';
 import { createCountry, updateCountry } from './services';
 import { Modal, Button, Form, Input, message } from 'antd';
@@ -84,6 +85,7 @@ class CountryModal extends React.PureComponent {
           </Button>,
         ]}>
         <Form>
+          <Prompt when={show} hide callback={this.props.toggle} />
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="COUNTRY_NAME" />}>

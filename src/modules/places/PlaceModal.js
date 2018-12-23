@@ -1,5 +1,6 @@
 import React from 'react';
 import { normFile } from '../../utils';
+import Prompt from 'components/Prompt';
 import { Upload } from '../common/components';
 import { FormattedMessage } from 'react-intl';
 import { createPlace, updatePlace } from './services'
@@ -112,6 +113,7 @@ class PlaceModal extends React.Component {
           </Button>
         ]}>
         <Form>
+          <Prompt when={show} hide callback={this.props.toggle} />
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="CITY_NAME" />}>

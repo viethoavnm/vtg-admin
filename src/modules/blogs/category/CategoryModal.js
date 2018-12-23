@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Button, Modal, Form, message } from 'antd';
+import Prompt from 'components/Prompt';
 import { createCategory, modifyCategory } from '../BlogServices';
 import { FormattedMessage } from 'react-intl';
 
@@ -62,6 +63,7 @@ class Category extends React.Component {
             <FormattedMessage id={addMode ? "ACT_ADD" : "ACT_SAVE"} />
           </Button>
         ]}>
+        <Prompt when={show} hide callback={this.props.toggle} />
         <Form>
           <FormItem
             {...formItemLayout}

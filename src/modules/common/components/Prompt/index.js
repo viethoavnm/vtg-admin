@@ -25,19 +25,24 @@ class PreventRoute extends React.Component {
   }
 
   show = allowTransitionCallback => {
-    const { title, onOk, onCancel } = this.props;
-    Modal.confirm({
-      title,
-      okText: this.props.t('ACT_AGREE'),
-      cancelText: this.props.t('ACT_CANCEL'),
-      onOk: onOk.bind(this, this.state.location),
-      onCancel: onCancel.bind(this, this.state.location)
-    })
+    const { title, onOk, onCancel, hide } = this.props;
+    if (!hide) {
+      Modal.confirm({
+        title,
+        okText: this.props.t('ACT_AGREE'),
+        cancelText: this.props.t('ACT_CANCEL'),
+        onOk: onOk.bind(this, this.state.location),
+        onCancel: onCancel.bind(this, this.state.location)
+      })
+    }
     allowTransitionCallback(false);
   };
 
   onTransition = location => {
     this.setState({ location })
+    if (this.props.callback) {
+      this.props.callback(location)
+    }
     return Symbol.keyFor(this.__trigger);
   }
 }
