@@ -8,10 +8,7 @@ const Sider = Layout.Sider;
 const SubMenu = Menu.SubMenu;
 
 class AppSlider extends React.Component {
-  state = {
-    collapsed: false,
-    menu: null,
-  };
+  state = { collapsed: false };
 
   onCollapse = (collapsed) => {
     const element = document.querySelector('#root');
@@ -24,22 +21,7 @@ class AppSlider extends React.Component {
   }
 
   onSelect = ({ key }) => {
-    this.setState({ menu: key });
     this.props.history.push(key);
-  }
-
-  componentDidMount() {
-    if (this.props.location.pathname !== this.state.menu)
-      PATH.forEach((menu) => {
-        if (menu.subComponent) {
-          menu.subComponent.forEach((sub) => {
-            if (sub.url === this.props.location.pathname)
-              return this.setState({ menu: sub.url });
-          });
-        }
-        if (menu.url === this.props.location.pathname)
-          return this.setState({ menu: menu.url });
-      })
   }
 
   render() {
@@ -59,7 +41,7 @@ class AppSlider extends React.Component {
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[this.state.menu]}
+          selectedKeys={[this.props.location.pathname]}
           onSelect={this.onSelect}
         >
           {PATH.map((menu) => {

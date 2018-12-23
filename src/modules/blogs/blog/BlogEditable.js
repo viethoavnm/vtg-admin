@@ -26,15 +26,15 @@ const formItemLayout = {
 };
 
 class Blog extends React.Component {
-  state = { content: '', tagList: [], error: false, unblock: false }
+  state = { content: '', tagList: [], error: false, unblock: true }
   t = (id, values) => (this.props.intl.formatMessage({ id }, values))
 
   onContentChange = (content) => {
-    this.setState({ content, error: false })
+    this.setState({ content, error: false, unblock: false })
   }
 
   onTagChange = (tagList) => {
-    this.setState({ tagList })
+    this.setState({ tagList, unblock: false })
   }
 
   onSaveDraft = (noModal) => {
