@@ -2,98 +2,46 @@ import React from 'react';
 import BlogEditable from './BlogEditable';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { initCategories, getPost, getPlacesList } from '../blogReudux';
-import * as Services from '../BlogServices';
-import { message } from 'antd';
+import { initCategories, getPlacesList } from '../blogReudux';
 import './Blog.less'
 
 class BlogWrapper extends React.Component {
   ready = (mode, search) => {
     if (mode !== 'CREATE_MODE') {
-      try {
-        const id = search.split('=')[1];
-        this.props.getPost(id);
-      } catch (error) {
+      this.id = search.split('=')[1];
+      if (!this.id)
         window.history.back();
-      }
     }
   }
 
-  onSubmit = (item, backToList = false) => {
-    const success = (data) => {
-      message.success()
-      if (backToList)
-        this.props.history.push('/blog-management');
-      else
-        window.location = (`/blog/post?postId=${data.id}`);
-    }
-
-    function trimImages() {
-      return item.imageNames.filter((name) => (item.content.indexOf(name) !== -1));
-    }
-    item.imageNames = trimImages();
-
-    if (this.props.mode === 'CREATE_MODE') {
-      Services.createBlog(item)
-        .then(success)
-        .catch(this.showError)
-    } else {
-      Services.modifyBlog({ ...this.props.blog, ...item })
-        .then(success)
-        .catch(this.showError)
-    }
-  }
-
-  showError = () => {
-    message.error(<span>Something error! Please try again.</span>);
+  constructor(props) {
+    super(props);
+    this.ready(props.mode, props.location.search);
   }
 
   componentDidMount() {
-    this.ready(this.props.mode, this.props.location.search);
     this.props.initCategories();
     this.props.getPlacesList();
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.location.search !== this.props.location.search) {
-      this.ready(newProps.mode, newProps.location.search)
-    }
-  }
-
   render() {
-    const { mode, blog, categories, places } = this.props
-    switch (mode) {
-      case 'CREATE_MODE':
-        return (
-          <BlogEditable
-            blog={{}}
-            places={places}
-            categories={categories}
-            onSubmit={this.onSubmit}
-          />
-        );
-      case 'MODIFY_MODE':
-        return (
-          <BlogEditable
-            editMode
-            blog={blog}
-            places={places}
-            categories={categories}
-            onSubmit={this.onSubmit}
-          />
-        );
-      default:
-        return null;
-    }
+    const { mode, categories, places } = this.props
+    return (
+      <BlogEditable
+        id={this.id}
+        places={places}
+        categories={categories}
+        addMode={mode === 'CREATE_MODE'}
+      />
+    );
   }
 }
 const mapProps = (state) => ({
   categories: state.blog.categories,
-  blog: state.blog.post,
   places: state.blog.places
 })
+
 export default withRouter(connect(mapProps, {
   initCategories,
-  getPlacesList,
-  getPost
+  getPlacesList
 })(BlogWrapper));
