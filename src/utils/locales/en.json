@@ -173,5 +173,6 @@
   "ACT_AGREE": "Đồng ý",
   "ACT_UPDATE_STATUS": "Cập nhập trạng thái",
   "POST_UPDATE_STATUS_CONFIRM": "Bạn có chắc chắn muốn thay đổi trạng thái của những bài viết đã chọn.",
-  "POST_DELETE_SELECTED": "Bạn có chắc chắn muốn xóa những bài viết đã chọn."
+  "POST_DELETE_SELECTED": "Bạn có chắc chắn muốn xóa những bài viết đã chọn.",
+  "POST_UPDATE_DONE": "Bạn đã thay đổi trạng thái bài viết thành công"
 }

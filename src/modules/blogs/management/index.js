@@ -47,7 +47,7 @@ class BlogWrapper extends React.PureComponent {
   onChangeStatus = (item, value) => {
     modifyBlog({ ...item, status: value })
       .then(() => {
-        message.success(this.t('BLOG_UPDATE_DONE'))
+        message.success(this.t('POST_UPDATE_DONE'))
         this.fetch()
       })
       .catch(this.showError)
@@ -64,8 +64,7 @@ class BlogWrapper extends React.PureComponent {
 
   onDeleteSelected = () => {
     Modal.confirm({
-      title: this.t('ACT_DELETE'),
-      content: this.t('POST_DELETE_SELECTED'),
+      title: this.t('POST_DELETE_SELECTED'),
       okText: this.t('ACT_DELETE'),
       cancelText: this.t('ACT_CANCEL')
     });
@@ -73,9 +72,8 @@ class BlogWrapper extends React.PureComponent {
 
   onChangeStatusSelected = (e) => {
     Modal.confirm({
-      title: this.t('ACT_UPDATE_STATUS'),
-      content: this.t('POST_UPDATE_STATUS_CONFIRM'),
-      okText: this.t('ACT_DELETE'),
+      title: this.t('POST_UPDATE_STATUS_CONFIRM'),
+      okText: this.t('ACT_SAVE'),
       cancelText: this.t('ACT_CANCEL')
     });
   }

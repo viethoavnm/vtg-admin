@@ -4,7 +4,6 @@ import Tags from 'components/Tags';
 import Upload from 'components/Upload';
 import Editor from 'components/Editor';
 import Prompt from 'components/Prompt'
-import { normFile } from 'utils';
 import { connect } from 'react-redux';
 import { getBlog, modifyBlog, createBlog } from '../BlogServices';
 import { Input, Form, Button, Divider, Icon, Select, message, Modal } from 'antd';
@@ -24,6 +23,8 @@ const formItemLayout = {
     sm: { span: 20 },
   },
 };
+
+const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
 
 class Blog extends React.Component {
   state = { content: '', tagList: [], error: false, unblock: true }
@@ -139,6 +140,17 @@ class Blog extends React.Component {
     this.onSaveDraft(true);
   }
 
+  checkFileUpload = (e) => {
+    if (e && e.file.size > MAX_UPLOAD_SIZE) {
+      message.warn(this.t('IMAGE_TOO_LARGE'));
+      return false;
+    }
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
+
   render = () => {
     const { places, categories, form, addMode } = this.props;
     const { tagList, content, unblock } = this.state;
@@ -198,11 +210,12 @@ class Blog extends React.Component {
               <FormItem label={this.props.t('BANNER')}>
                 {getFieldDecorator('bannerContentName', {
                   valuePropName: 'fileList',
-                  getValueFromEvent: normFile,
+                  getValueFromEvent: this.checkFileUpload,
                   rules: [{ required: true, message: this.props.t('POST_REQUIRE_BANNER') }]
                 })(
                   <Upload
                     id="bannerContentName"
+                    accept="image/*"
                     listType="picture-card">
                     {showUpload && <span>
                       <Icon type="plus" />
