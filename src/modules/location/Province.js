@@ -5,6 +5,7 @@ import { getProvinceList, getAllCountry, deleteProvince } from './services';
 import { Input, Table, Divider, Button, Popconfirm, message, Select } from 'antd';
 
 const PAGE_SIZE = 10;
+const NONE = 'NONE';
 
 class Province extends React.Component {
   state = { modal: false, addMode: true, content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: { countryId: '_ALL_' }, countries: [] }
@@ -132,12 +133,13 @@ const getProvinceColumns = (self) => ([
   {
     title: <FormattedMessage id="DESCRIPTION" />,
     dataIndex: 'introduction',
+    width: 200
   },
   {
     title: <FormattedMessage id="ACTION" />,
     key: "city-action",
     width: 128,
-    render: (item) => (
+    render: (item) => item.name === NONE ? null : (
       <span>
         <a href="/" onClick={self.openEdit.bind(self, item)}>
           <FormattedMessage id="ACT_MODIFY" />

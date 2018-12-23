@@ -132,7 +132,7 @@
   "CERT": "Giấy phép kinh doanh",
   "BLOG_DELETE_POST": "Bạn có chắc chắn muốn xóa bài viết này?",
   "BLOG_DELETE_DONE": "Bạn đã xóa bài viết thành công!",
-  "BLOG_UPDATE_DONE": "Bạn đã xóa bài viết thành công!",
+  "BLOG_UPDATE_DONE": "Bạn đã sửa bài viết thành công!",
   "EDITOR_PLACEHOLDER": "Nhập nội dung ở đây",
   "BANNER": "Ảnh bìa",
   "INPUT_REQUIRED": "Trường bắt buộc",
@@ -140,5 +140,11 @@
   "ADD_CATEGORY_EXITS": "Thêm danh mục thất bại, danh mục đã có trong danh sách",
   "MODIFY_CATEGORY_EXITS": "Sửa danh mục thất bại, danh mục đã có trong danh sách",
   "CATEGORY_DELETE_CONFIRM": "Bạn có chắc muốn xóa danh mục này?",
-  "CATEGORY_DELETE_DONE": "Bạn vừa xóa danh mục thành công!"
+  "CATEGORY_DELETE_DONE": "Bạn vừa xóa danh mục thành công!",
+  "COUNTRY_ADD_EXITS": "Thêm quốc gia thất bại, quốc gia đã có trong danh sách",
+  "COUNTRY_MODIFY_EXITS": "Sửa quốc gia thất bại, quốc gia đã có trong danh sách",
+  "COUNTRY_DELETE_CONFIRM": "Bạn có chắc chắn muốn xóa quốc gia này?",
+  "COUNTRY_DELETE_DONE": "Bạn đã xóa quốc gia thành công",
+  "COUNTRY_UPDATE_DONE": "Bạn đã sửa quốc gia thành công",
+  "COUNTRY_ADD_DONE": "Bạn đã thêm quốc gia thành công"
 }

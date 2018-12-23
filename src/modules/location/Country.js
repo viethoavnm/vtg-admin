@@ -5,6 +5,7 @@ import { getCountryList, deleteCountry } from './services';
 import { Input, Table, Divider, Popconfirm, Button, message } from 'antd';
 
 const PAGE_SIZE = 10;
+const NONE = 'NONE';
 
 class Country extends React.Component {
   state = { modal: false, addMode: true, content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: {} }
@@ -43,7 +44,13 @@ class Country extends React.Component {
 
   onDelete = (item) => {
     deleteCountry(item.id)
-      .then(() => { this.fetch(0) })
+      .then(() => {
+        this.fetch(0);
+        message.success(this.t('COUNTRY_DELETE_DONE'));
+      })
+      .catch(() => {
+        message.error();
+      })
   }
 
   onSearch = (value) => {
@@ -90,6 +97,7 @@ class Country extends React.Component {
           </div>
         </div>
         <Modal
+          t={this.t}
           data={this.data}
           show={this.state.modal}
           toggle={this.toggleModal}
@@ -112,12 +120,13 @@ function getCountryColumns(self) {
     {
       title: <FormattedMessage id="DESCRIPTION" />,
       dataIndex: 'description',
+      width: 200,
     },
     {
       title: <FormattedMessage id="ACTION" />,
       key: "country-action",
       width: 128,
-      render: (item) => (
+      render: (item) => item.name === NONE ? null : (
         <span>
           <a href="/" onClick={self.openEdit.bind(self, item)}>
             <FormattedMessage id="ACT_MODIFY" />
@@ -125,7 +134,7 @@ function getCountryColumns(self) {
           <Divider type="vertical" />
           <Popconfirm
             placement="topRight"
-            title={<FormattedMessage id="DELETE_CONFIRM" />}
+            title={<FormattedMessage id="COUNTRY_DELETE_CONFIRM" />}
             onConfirm={self.onDelete.bind(self, item)}
             okText={<FormattedMessage id="ACT_DELETE" />}
             cancelText={<FormattedMessage id="ACT_CANCEL" />}

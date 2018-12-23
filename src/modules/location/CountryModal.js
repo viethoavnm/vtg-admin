@@ -27,11 +27,15 @@ class CountryModal extends React.PureComponent {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const onSuccess = () => {
-          message.success();
+          message.success(this.props.t(this.props.addMode
+            ? 'COUNTRY_ADD_DONE'
+            : 'COUNTRY_UPDATE_DONE'));
           this.setState({ loading: false }, this.onClose)
         }
         const onFail = () => {
-          message.error();
+          message.error(this.props.t(this.props.addMode
+            ? 'COUNTRY_ADD_EXITS'
+            : 'COUNTRY_MODIFY_EXITS'));
           this.setState({ loading: false })
         }
         if (this.props.addMode)
@@ -78,44 +82,42 @@ class CountryModal extends React.PureComponent {
           <Button key="submit" type="primary" onClick={this.onSubmit}>
             <FormattedMessage id={addMode ? "ACT_ADD" : "ACT_SAVE"} />
           </Button>,
-        ]}
-      >
+        ]}>
         <Form>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="COUNTRY_NAME" />}
-          >
+            label={<FormattedMessage id="COUNTRY_NAME" />}>
             {getFieldDecorator('name', {
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
             })(
-              <Input />
-            )}
+              <Input maxLength={50} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="SLOGAN" />}
-          >
-            {getFieldDecorator('slogan')(<Input />)}
-          </FormItem>
-          <FormItem
-            style={{ display: 'none' }}
-            {...formItemLayout}
-            label={<FormattedMessage id="LOCATION" />}
-          >
-            {getFieldDecorator('latitude')(<Input />)}
+            label={<FormattedMessage id="SLOGAN" />} >
+            {getFieldDecorator('slogan',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Input maxLength={100} />)}
           </FormItem>
           <FormItem
             style={{ display: 'none' }}
             {...formItemLayout}
-            label={<FormattedMessage id="LOCATION" />}
-          >
-            {getFieldDecorator('longitude')(<Input />)}
+            label={<FormattedMessage id="LOCATION" />}>
+            {getFieldDecorator('latitude')(
+              <Input />)}
+          </FormItem>
+          <FormItem
+            style={{ display: 'none' }}
+            {...formItemLayout}
+            label={<FormattedMessage id="LOCATION" />}>
+            {getFieldDecorator('longitude')(
+              <Input />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="DESCRIPTION" />}
-          >
-            {getFieldDecorator('description')(<Input.TextArea rows={3} />)}
+            label={<FormattedMessage id="DESCRIPTION" />}>
+            {getFieldDecorator('description')(
+              <Input.TextArea rows={3} maxLength={512} />)}
           </FormItem>
         </Form>
       </Modal>
