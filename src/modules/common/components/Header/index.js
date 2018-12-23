@@ -1,2 +1,2 @@
-import './Header.css';
+import './Header.less';
 export { default } from './Header';
