@@ -15,11 +15,10 @@ class Category extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const onSuccess = () => {
-          message.success();
           this.setState({ loading: false }, this.onClose)
         }
         const onFail = () => {
-          message.error();
+          message.error(this.props.t(this.props.addMode ? 'ADD_CATEGORY_EXITS' : 'MODIFY_CATEGORY_EXITS'));
           this.setState({ loading: false })
         }
         if (this.props.addMode)
@@ -62,18 +61,21 @@ class Category extends React.Component {
           <Button key="submit" type="primary" onClick={this.onSubmit}>
             <FormattedMessage id={addMode ? "ACT_ADD" : "ACT_SAVE"} />
           </Button>
-        ]}
-      >
+        ]}>
         <Form>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="CATEGORY_NAME" />} >
-            {getFieldDecorator('title', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
+            {getFieldDecorator('title',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Input maxLength={50} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
-            {getFieldDecorator('introduction', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input.TextArea rows={3} />)}
+            {getFieldDecorator('introduction',
+              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
+                <Input.TextArea rows={3} maxLength={300} />)}
           </FormItem>
         </Form>
       </Modal>

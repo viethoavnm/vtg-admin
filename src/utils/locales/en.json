@@ -136,5 +136,9 @@
   "EDITOR_PLACEHOLDER": "Nhập nội dung ở đây",
   "BANNER": "Ảnh bìa",
   "INPUT_REQUIRED": "Trường bắt buộc",
-  "POST_DONE": "Bài viết đã được đăng. Bạn có thể cập nhật bài viết này trong mục quản lý blog"
+  "POST_DONE": "Bài viết đã được đăng. Bạn có thể cập nhật bài viết này trong mục quản lý blog",
+  "ADD_CATEGORY_EXITS": "Thêm danh mục thất bại, danh mục đã có trong danh sách",
+  "MODIFY_CATEGORY_EXITS": "Sửa danh mục thất bại, danh mục đã có trong danh sách",
+  "CATEGORY_DELETE_CONFIRM": "Bạn có chắc muốn xóa danh mục này?",
+  "CATEGORY_DELETE_DONE": "Bạn vừa xóa danh mục thành công!"
 }

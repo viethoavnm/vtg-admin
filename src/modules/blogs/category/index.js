@@ -53,7 +53,10 @@ class CategoryWrapper extends React.PureComponent {
 
   onDelete = (item) => {
     deleteCategory(item.id)
-      .then(() => { this.fetch(0) })
+      .then(() => {
+        this.fetch(0)
+        message.success(this.t('CATEGORY_DELETE_DONE'))
+      })
   }
 
   onSearch = (value) => {
@@ -156,7 +159,7 @@ const getColumns = (self) => ([
         <Divider type="vertical" />
         <Popconfirm
           placement="topRight"
-          title={<FormattedMessage id="DELETE_CONFIRM" />}
+          title={<FormattedMessage id="CATEGORY_DELETE_CONFIRM" />}
           onConfirm={self.onDelete.bind(self, item)}
           okText={<FormattedMessage id="ACT_DELETE" />}
           cancelText={<FormattedMessage id="ACT_CANCEL" />}
