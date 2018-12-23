@@ -1,10 +1,9 @@
 import React from 'react';
-import { normFile } from '../../utils';
 import Prompt from 'components/Prompt';
-import { Upload } from '../common/components';
+import { Upload } from 'components';
 import { FormattedMessage } from 'react-intl';
 import { createProvince, updateProvince } from './services'
-import { RESOURCES_PATH } from '../common/constants';
+import { RESOURCES_PATH } from 'consts';
 import { Modal, Button, Form, Input, Icon, Select, message } from 'antd';
 
 const FormItem = Form.Item;
@@ -18,6 +17,8 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 };
+
+const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
 
 class ProvinceModal extends React.Component {
   state = { loading: false }
@@ -66,6 +67,17 @@ class ProvinceModal extends React.Component {
     });
   }
 
+  checkFileUpload = (e) => {
+    if (e && e.file.size > MAX_UPLOAD_SIZE) {
+      message.warn(this.props.t('IMAGE_TOO_LARGE'));
+      return false;
+    }
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.show && this.props.show) {
       const { data } = this.props;
@@ -101,7 +113,11 @@ class ProvinceModal extends React.Component {
 
   render = () => {
     const { show, form, addMode } = this.props;
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldsValue } = form;
+    const { ads1, ads2, contentNames } = getFieldsValue(['contentNames', 'ads1', 'ads2']);
+    const showUAds1 = !ads1 || (ads1 && !ads1.length),
+      showUAds2 = !ads2 || (ads2 && !ads2.length),
+      showUBanner = !contentNames || (contentNames && contentNames.length <= 15);
     return (
       <Modal
         centered
@@ -122,15 +138,15 @@ class ProvinceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="CITY_NAME" />}>
             {getFieldDecorator('name',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Input maxLength={50} />)}
+              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_NAME') }] })(
+                <Input maxLength={50} placeholder={this.props.t('CITY_HINT_NAME')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="COUNTRY_NAME" />}>
             {getFieldDecorator('countryId',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Select>
+              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_COUNTRY') }] })(
+                <Select placeholder={this.props.t('CITY_HINT_COUNTRY')}>
                   {this.props.countries.map(({ name, id }) => (
                     <Select.Option key={id} value={id}>{name}</Select.Option>
                   ))}
@@ -142,8 +158,8 @@ class ProvinceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="SLOGAN" />}>
             {getFieldDecorator('slogan',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Input maxLength={100} />)}
+              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_SLOGAN') }] })(
+                <Input maxLength={100} placeholder={this.props.t('CITY_HINT_SLOGAN')} />)}
           </FormItem>
           <FormItem
             style={{ display: 'none' }}
@@ -162,13 +178,14 @@ class ProvinceModal extends React.Component {
             label={<FormattedMessage id="IMG_BANNER" />}>
             {getFieldDecorator('contentNames', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
-              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
+              getValueFromEvent: this.checkFileUpload,
+              rules: [{ required: true, message: this.props.t('CITY_REQUIRED_BANNER') }]
             })(
-              <Upload listType="picture" multiple>
-                <Button>
-                  <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+              <Upload listType="picture-card" multiple>
+                {showUBanner && <span>
+                  <Icon type="plus" />
+                  {this.props.t('ACT_UPLOAD')}
+                </span>}
               </Upload>
             )}
           </FormItem>
@@ -177,45 +194,50 @@ class ProvinceModal extends React.Component {
             label={<FormattedMessage id="IMG_ADS_1" />}>
             {getFieldDecorator('ads1', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
-              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
+              getValueFromEvent: this.checkFileUpload,
+              rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_F') }]
             })(
-              <Upload listType="picture" multiple>
-                <Button>
+              <Upload listType="picture">
+                {showUAds1 && <Button>
                   <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+                </Button>}
               </Upload>
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_1" />}>
-            {getFieldDecorator('url1', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
+            {getFieldDecorator('url1',
+              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_F') }] })(
+                <Input placeholder={this.props.t('CITY_HINT_ADS_LINK_F')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="IMG_ADS_2" />}>
             {getFieldDecorator('ads2', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
-              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
+              getValueFromEvent: this.checkFileUpload,
+              rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_S') }]
             })(
               <Upload listType="picture">
-                <Button>
+                {showUAds2 && <Button>
                   <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+                </Button>}
               </Upload>
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_2" />}>
-            {getFieldDecorator('url2', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
+            {getFieldDecorator('url2',
+              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_S') }] })(
+                <Input placeholder={this.props.t('CITY_HINT_ADS_LINK_S')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
-            {getFieldDecorator('introduction')(<Input.TextArea rows={3} />)}
+            {getFieldDecorator('introduction')(
+              <Input.TextArea rows={3} placeholder={this.props.t('CITY_HINT_DES')} />)}
           </FormItem>
         </Form>
       </Modal>

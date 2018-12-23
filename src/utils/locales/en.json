@@ -183,5 +183,19 @@
   "COUNTRY_REQUIRED_SLOGAN": "Vui lòng nhập slogan",
   "COUNTRY_HINT_NAME": "Hãy nhập tên quốc gia",
   "COUNTRY_HINT_SLOGAN": "Hãy nhập slogan",
-  "COUNTRY_HINT_DES": "Hãy nhập mô tả"
+  "COUNTRY_HINT_DES": "Hãy nhập mô tả",
+  "CITY_REQUIRED_NAME": "Vui lòng nhập tên thành phố",
+  "CITY_REQUIRED_COUNTRY": "Vui lòng chọn quốc gia",
+  "CITY_REQUIRED_SLOGAN": "Vui lòng nhập slogan",
+  "CITY_REQUIRED_BANNER": "Vui lòng chọn ảnh bìa",
+  "CITY_REQUIRED_ADS_F": "Vui lòng chọn ảnh quảng cáo 1",
+  "CITY_REQUIRED_ADS_S": "Vui lòng chọn ảnh quảng cáo 2",
+  "CITY_REQUIRED_ADS_LINK_F": "Vui lòng nhập link quảng cáo 1",
+  "CITY_REQUIRED_ADS_LINK_S": "Vui lòng nhập link quảng cáo 2",
+  "CITY_HINT_NAME": "Hãy nhập tên thành phố",
+  "CITY_HINT_COUNTRY": "Hãy chọn quốc gia",
+  "CITY_HINT_SLOGAN": "Hãy nhập slogan",
+  "CITY_HINT_ADS_LINK_F": "Hãy nhập link quảng cáo 1",
+  "CITY_HINT_ADS_LINK_S": "Hãy nnhập link quảng cáo 2",
+  "CITY_HINT_DES": "Hãy nhập mô tả"
 }
