@@ -70,6 +70,7 @@
   "MODIFY_CATEGORY": "Sửa danh mục",
   "TBL_NO": "Số",
   "TBL_TITLE": "Tên",
+  "TBL_CREATED_DATE": "Ngày tạo",
   "TBL_UPDATE_DATE": "Ngày cập nhật",
   "TBL_STATUS": "Trạng thái",
   "STATUS_PUBLIC": "Công khai",

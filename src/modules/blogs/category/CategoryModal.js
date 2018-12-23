@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button, Modal, Form, message } from 'antd';
-import { createCategory, modifyCategory } from '../BlogServices'
+import { createCategory, modifyCategory } from '../BlogServices';
 import { FormattedMessage } from 'react-intl';
 
 class Category extends React.Component {

@@ -8,6 +8,7 @@ const Option = Select.Option;
 const STATUS_PUBLIC = 1;
 const STATUS_PRIVATE = 0;
 const PAGE_SIZE = 10;
+const NONE = 'NONE_CATEGORY';
 
 class CategoryWrapper extends React.PureComponent {
   state = { modal: false, addMode: true, content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: {}, countries: [] }
@@ -118,13 +119,21 @@ const getColumns = (self) => ([
     dataIndex: 'title',
   },
   {
+    title: <FormattedMessage id="TBL_CREATED_DATE" />,
+    dataIndex: 'createdDate',
+    width: 130,
+    render: (value) => (<span>{moment(value).format('ll')}</span>)
+  },
+  {
     title: <FormattedMessage id="TBL_UPDATE_DATE" />,
     dataIndex: 'lastUpdate',
+    width: 130,
     render: (value) => (<span>{moment(value).format('ll')}</span>)
   },
   {
     title: <FormattedMessage id="TBL_STATUS" />,
     key: 'status',
+    width: 130,
     render: (item) =>
       (
         <Select value={item.status} onChange={self.onChangeStatus.bind(self, item)}>
@@ -137,7 +146,7 @@ const getColumns = (self) => ([
     title: <FormattedMessage id="ACTION" />,
     key: "country-action",
     width: 128,
-    render: (item) => (
+    render: (item) => item.title === NONE ? null : (
       <span>
         <a href="/" onClick={self.openEdit.bind(self, item)}>
           <FormattedMessage id="ACT_MODIFY" />
