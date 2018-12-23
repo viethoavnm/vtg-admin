@@ -191,6 +191,7 @@ class ProvinceModal extends React.Component {
           </FormItem>
           <FormItem
             {...formItemLayout}
+            help={<FormattedMessage id="SUGGEST_SIZE_ADS" />}
             label={<FormattedMessage id="IMG_ADS_1" />}>
             {getFieldDecorator('ads1', {
               valuePropName: 'fileList',
@@ -213,6 +214,7 @@ class ProvinceModal extends React.Component {
           </FormItem>
           <FormItem
             {...formItemLayout}
+            help={<FormattedMessage id="SUGGEST_SIZE_ADS" />}
             label={<FormattedMessage id="IMG_ADS_2" />}>
             {getFieldDecorator('ads2', {
               valuePropName: 'fileList',

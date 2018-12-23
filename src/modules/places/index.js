@@ -7,7 +7,7 @@ import './Places.less';
 
 const PAGE_SIZE = 10;
 
-class Province extends React.Component {
+class Places extends React.Component {
   state = { modal: false, addMode: true, content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: {}, countries: [] }
 
   columns = getColumns(this)
@@ -44,7 +44,10 @@ class Province extends React.Component {
 
   onDelete = (item) => {
     removePlace(item.id)
-      .then(() => { this.fetch(0) })
+      .then(() => {
+        message.success(this.t('PLACE_DELETE_DONE'));
+        this.fetch(0)
+      })
   }
 
   onChangeCountry = (value) => {
@@ -136,7 +139,7 @@ const getColumns = (self) => ([
         <Divider type="vertical" />
         <Popconfirm
           placement="topRight"
-          title={<FormattedMessage id="DELETE_CONFIRM" />}
+          title={<FormattedMessage id="PLACE_DELETE_CONFIRM" />}
           onConfirm={self.onDelete.bind(self, item)}
           okText={<FormattedMessage id="ACT_DELETE" />}
           cancelText={<FormattedMessage id="ACT_CANCEL" />}
@@ -149,4 +152,4 @@ const getColumns = (self) => ([
 ])
 
 
-export default injectIntl(Province)
+export default injectIntl(Places)

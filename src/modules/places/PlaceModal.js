@@ -43,11 +43,15 @@ class PlaceModal extends React.Component {
         delete data.url1
         delete data.url2
         const onSuccess = () => {
-          message.success();
+          message.success(this.props.t(this.props.addMode
+            ? 'PLACE_ADD_DONE'
+            : 'PLACE_UPDATE_DONE'));
           this.setState({ loading: false }, this.onClose)
         }
         const onFail = () => {
-          message.error();
+          message.error(this.props.t(this.props.addMode
+            ? 'PLACE_ADD_EXITS'
+            : 'PLACE_MODIFY_EXITS'));
           this.setState({ loading: false })
         }
         if (this.props.addMode)
@@ -97,7 +101,11 @@ class PlaceModal extends React.Component {
 
   render = () => {
     const { show, form, addMode } = this.props;
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, getFieldsValue } = form;
+    const { ads1, ads2, contentNames } = getFieldsValue(['contentNames', 'ads1', 'ads2']);
+    const showUAds1 = !ads1 || (ads1 && !ads1.length),
+      showUAds2 = !ads2 || (ads2 && !ads2.length),
+      showUBanner = !contentNames || (contentNames && contentNames.length <= 15);
     return (
       <Modal
         centered
@@ -116,13 +124,17 @@ class PlaceModal extends React.Component {
           <Prompt when={show} hide callback={this.props.toggle} />
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="CITY_NAME" />}>
-            {getFieldDecorator('name', { rules: [{ required: true }] })(<Input />)}
+            label={<FormattedMessage id="PLACE_NAME" />}>
+            {getFieldDecorator('name',
+              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_NAME') }] })(
+                <Input maxLength={50} placeholder={this.props.t('PLACE_HINT_NAME')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="SLOGAN" />}>
-            {getFieldDecorator('slogan')(<Input />)}
+            {getFieldDecorator('slogan',
+              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_SLOGAN') }] })(
+                <Input maxLength={100} placeholder={this.props.t('PLACE_HINT_SLOGAN')} />)}
           </FormItem>
           <FormItem
             style={{ display: 'none' }}
@@ -142,59 +154,66 @@ class PlaceModal extends React.Component {
             {getFieldDecorator('contentNames', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_BANNER') }]
             })(
-              <Upload listType="picture" multiple>
-                <Button>
-                  <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+              <Upload listType="picture-card" multiple>
+                {showUBanner && <span>
+                  <Icon type="plus" />
+                  {this.props.t('ACT_UPLOAD')}
+                </span>}
               </Upload>
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
+            help={<FormattedMessage id="SUGGEST_SIZE_ADS" />}
             label={<FormattedMessage id="IMG_ADS_1" />}>
             {getFieldDecorator('ads1', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_F') }]
             })(
-              <Upload listType="picture" multiple>
-                <Button>
+              <Upload listType="picture">
+                {showUAds1 && <Button>
                   <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+                </Button>}
               </Upload>
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_1" />}>
-            {getFieldDecorator('url1', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('url1',
+              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_F') }] })(
+                <Input placeholder={this.props.t('PLACE_HINT_ADS_LINK_F')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
+            help={<FormattedMessage id="SUGGEST_SIZE_ADS" />}
             label={<FormattedMessage id="IMG_ADS_2" />}>
             {getFieldDecorator('ads2', {
               valuePropName: 'fileList',
               getValueFromEvent: normFile,
-              rules: [{ required: true }]
+              rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_S') }]
             })(
               <Upload listType="picture">
-                <Button>
+                {showUAds2 && <Button>
                   <Icon type="upload" /><FormattedMessage id="ACT_UPLOAD" />
-                </Button>
+                </Button>}
               </Upload>
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_2" />}>
-            {getFieldDecorator('url2', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('url2',
+              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_S') }] })(
+                <Input placeholder={this.props.t('PLACE_HINT_ADS_LINK_S')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
-            {getFieldDecorator('introduction')(<Input.TextArea rows={3} />)}
+            {getFieldDecorator('introduction')(<Input.TextArea rows={3} placeholder={this.props.t('PLACE_HINT_DES')} />)}
           </FormItem>
         </Form>
       </Modal>
