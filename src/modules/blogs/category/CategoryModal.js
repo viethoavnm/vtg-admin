@@ -69,15 +69,15 @@ class Category extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="CATEGORY_NAME" />} >
             {getFieldDecorator('title',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Input maxLength={50} />)}
+              { rules: [{ required: true, message: this.props.t('CATEGORY_REQUIRE_NAME') }] })(
+                <Input maxLength={150} placeholder={this.props.t('CATEGORY_HINT_NAME')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
             {getFieldDecorator('introduction',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Input.TextArea rows={3} maxLength={300} />)}
+              { rules: [{ required: true, message: this.props.t('CATEGORY_REQUIRE_DES') }] })(
+                <Input.TextArea rows={3} maxLength={300} placeholder={this.props.t('CATEGORY_HINT_DES')} />)}
           </FormItem>
         </Form>
       </Modal>

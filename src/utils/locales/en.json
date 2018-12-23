@@ -174,5 +174,9 @@
   "ACT_UPDATE_STATUS": "Cập nhập trạng thái",
   "POST_UPDATE_STATUS_CONFIRM": "Bạn có chắc chắn muốn thay đổi trạng thái của những bài viết đã chọn.",
   "POST_DELETE_SELECTED": "Bạn có chắc chắn muốn xóa những bài viết đã chọn.",
-  "POST_UPDATE_DONE": "Bạn đã thay đổi trạng thái bài viết thành công"
+  "POST_UPDATE_DONE": "Bạn đã thay đổi trạng thái bài viết thành công",
+  "CATEGORY_REQUIRE_NAME": "Vui lòng nhập tên danh mục",
+  "CATEGORY_HINT_NAME": "Hãy nhập tên danh mục, tối đa 150 kí tự",
+  "CATEGORY_REQUIRE_DES": "Vui lòng nhập mô tả",
+  "CATEGORY_HINT_DES": "Hãy nhập mô tả, tối đa 300 kí tự"
 }
