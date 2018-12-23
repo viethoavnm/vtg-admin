@@ -105,6 +105,7 @@ class CategoryWrapper extends React.PureComponent {
           </div>
         </div>
         <Modal
+          t={this.t}
           data={this.data}
           show={this.state.modal}
           toggle={this.toggleModal}

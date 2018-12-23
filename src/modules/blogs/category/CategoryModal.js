@@ -68,12 +68,12 @@ class Category extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="CATEGORY_NAME" />} >
-            {getFieldDecorator('title', { rules: [{ required: true }] })(<Input />)}
+            {getFieldDecorator('title', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
-            {getFieldDecorator('introduction', { rules: [{ required: true, message: '' }] })(<Input.TextArea rows={3} />)}
+            {getFieldDecorator('introduction', { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(<Input.TextArea rows={3} />)}
           </FormItem>
         </Form>
       </Modal>
