@@ -65,7 +65,16 @@ class BlogWrapper extends React.PureComponent {
   onDeleteSelected = () => {
     Modal.confirm({
       title: this.t('ACT_DELETE'),
-      content: this.t('BLOG_DELETE_POST'),
+      content: this.t('POST_DELETE_SELECTED'),
+      okText: this.t('ACT_DELETE'),
+      cancelText: this.t('ACT_CANCEL')
+    });
+  }
+
+  onChangeStatusSelected = (e) => {
+    Modal.confirm({
+      title: this.t('ACT_UPDATE_STATUS'),
+      content: this.t('POST_UPDATE_STATUS_CONFIRM'),
       okText: this.t('ACT_DELETE'),
       cancelText: this.t('ACT_CANCEL')
     });
@@ -105,14 +114,15 @@ class BlogWrapper extends React.PureComponent {
   render() {
     const { categories } = this.props;
     const { content, selected } = this.state;
-    const showNumberDelete = selected && selected.length ? true : false;
+    const showNumber = selected && selected.length ? true : false;
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
             <div className="table-toolbar">
-              <span className="toolbar" style={{ width: '50%' }}>
+              <span className="toolbar">
                 <Select
+                  style={{ minWidth: 200 }}
                   onChange={this.onChangeCategory}
                   value={this.state.query.categoryId}
                   placeholder={this.t('SELECT_BLOG_CATEGORY')}>
@@ -127,11 +137,18 @@ class BlogWrapper extends React.PureComponent {
               </span>
               <span className="toolbar-right">
                 <span className="toolbar">
-                  <Button type="danger" onClick={this.onDeleteSelected} disabled={!showNumberDelete}>
+                  <Select
+                    style={{ width: 110 }}
+                    disabled={!showNumber}
+                    onChange={this.onChangeStatusSelected}>
+                    <Option value={STATUS_PUBLIC}><FormattedMessage id="PUBLIC" /></Option>
+                    <Option value={STATUS_PRIVATE}><FormattedMessage id="PRIVATE" /></Option>
+                  </Select>
+                  <Button type="danger" onClick={this.onDeleteSelected} disabled={!showNumber}>
                     <FormattedMessage id="ACT_DELETE" />
-                    {showNumberDelete && <span> ( {selected.length} )</span>}
+                    {showNumber && <span> ( {selected.length} )</span>}
                   </Button>
-                  <Button type="primary" onClick={this.onOpenAdd} disabled={!!showNumberDelete}>
+                  <Button type="primary" onClick={this.onOpenAdd} disabled={!!showNumber}>
                     <FormattedMessage id="ADD_BLOG" />
                   </Button>
                 </span>

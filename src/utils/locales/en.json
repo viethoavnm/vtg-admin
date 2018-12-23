@@ -170,5 +170,8 @@
   "POST_INPUT_REQUIRED": "Bạn vui lòng nhập các thông tin bắt buộc",
   "SAVE_DRAFT_CONFIRM": "Bạn có muốn lưu bản nháp này không?",
   "SAVE_DRAFT_UPDATE": "Bạn có muốn lưu lại những thay đổi này không?",
-  "ACT_AGREE": "Đồng ý"
+  "ACT_AGREE": "Đồng ý",
+  "ACT_UPDATE_STATUS": "Cập nhập trạng thái",
+  "POST_UPDATE_STATUS_CONFIRM": "Bạn có chắc chắn muốn thay đổi trạng thái của những bài viết đã chọn.",
+  "POST_DELETE_SELECTED": "Bạn có chắc chắn muốn xóa những bài viết đã chọn."
 }
