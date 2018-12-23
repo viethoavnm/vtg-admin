@@ -90,16 +90,16 @@ class CountryModal extends React.PureComponent {
             {...formItemLayout}
             label={<FormattedMessage id="COUNTRY_NAME" />}>
             {getFieldDecorator('name', {
-              rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }]
+              rules: [{ required: true, message: this.props.t('COUNTRY_REQUIRED_NAME') }]
             })(
-              <Input maxLength={50} />)}
+              <Input maxLength={50} placeholder={this.props.t('COUNTRY_HINT_NAME')} />)}
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="SLOGAN" />} >
             {getFieldDecorator('slogan',
-              { rules: [{ required: true, message: this.props.t('INPUT_REQUIRED') }] })(
-                <Input maxLength={100} />)}
+              { rules: [{ required: true, message: this.props.t('COUNTRY_REQUIRED_SLOGAN') }] })(
+                <Input maxLength={100} placeholder={this.props.t('COUNTRY_HINT_SLOGAN')} />)}
           </FormItem>
           <FormItem
             style={{ display: 'none' }}
@@ -119,7 +119,7 @@ class CountryModal extends React.PureComponent {
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
             {getFieldDecorator('description')(
-              <Input.TextArea rows={3} maxLength={512} />)}
+              <Input.TextArea rows={3} maxLength={300} placeholder={this.props.t('COUNTRY_HINT_DES')} />)}
           </FormItem>
         </Form>
       </Modal>

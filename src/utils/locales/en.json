@@ -176,7 +176,12 @@
   "POST_DELETE_SELECTED": "Bạn có chắc chắn muốn xóa những bài viết đã chọn.",
   "POST_UPDATE_DONE": "Bạn đã thay đổi trạng thái bài viết thành công",
   "CATEGORY_REQUIRE_NAME": "Vui lòng nhập tên danh mục",
-  "CATEGORY_HINT_NAME": "Hãy nhập tên danh mục, tối đa 150 kí tự",
+  "CATEGORY_HINT_NAME": "Hãy nhập tên danh mục",
   "CATEGORY_REQUIRE_DES": "Vui lòng nhập mô tả",
-  "CATEGORY_HINT_DES": "Hãy nhập mô tả, tối đa 300 kí tự"
+  "CATEGORY_HINT_DES": "Hãy nhập mô tả",
+  "COUNTRY_REQUIRED_NAME": "Vui lòng nhập tên quốc gia",
+  "COUNTRY_REQUIRED_SLOGAN": "Vui lòng nhập slogan",
+  "COUNTRY_HINT_NAME": "Hãy nhập tên quốc gia",
+  "COUNTRY_HINT_SLOGAN": "Hãy nhập slogan",
+  "COUNTRY_HINT_DES": "Hãy nhập mô tả"
 }
