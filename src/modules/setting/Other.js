@@ -2,11 +2,11 @@ import React from 'react';
 import injectIntl from 'intl';
 import { withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { Form, Input, Button, message } from 'antd';
+import { Button, message } from 'antd';
 import { putSetting, getSetting } from './settingServices';
+import Editor from 'components/Editor';
 import './Settings.less';
 
-const FormItem = Form.Item;
 
 const LIST = {
   "MENU_SETTING_COPYRIGHT": 3,
@@ -19,21 +19,15 @@ const LIST = {
 }
 
 class CompanyProfile extends React.PureComponent {
-  state = { editable: false, loading: false };
-
-  onModify = () => {
-    this.setState({ editable: true }, () => { document.querySelector('#content').focus(); })
-  }
-
+  state = { loading: false };
   onSubmit = () => {
     this.setState({ loading: true })
-    const value = this.props.form.getFieldValue('content');
-    const name = this.props.mode;
-    const data = { value, id: LIST[name], name }
+    const { mode } = this.props;
+    const data = { id: LIST[mode], name: mode, value: this.state.content, }
     putSetting(data)
       .then(() => {
         message.success(this.props.t('DONE'));
-        this.setState({ loading: false, editable: false });
+        this.setState({ loading: false });
       })
       .catch(() => {
         message.error(this.props.t('ERROR'));
@@ -41,48 +35,32 @@ class CompanyProfile extends React.PureComponent {
       })
   }
 
+  onModelChange = (content) => {
+    this.setState({ content })
+  }
+
   componentDidMount() {
     getSetting(LIST[this.props.mode])
       .then(({ value }) => {
-        this.props.form.setFieldsValue({ content: value })
+        this.setState({ content: value })
       })
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const placeholder = this.props.t('INPUT_INFORMATION');
+    const { content } = this.state;
     return (
       <div className="container-fluid">
         <span className="text-strike"><FormattedMessage id={this.props.mode} /></span>
-        <Form>
-          <FormItem>
-            {getFieldDecorator('content',
-              {
-                rules: [{
-                  required: true,
-                  message: <FormattedMessage id="REQUIRED_INPUT" />
-                }]
-              })(
-                <Input.TextArea
-                  id="content"
-                  rows={10}
-                  placeholder={placeholder}
-                  readOnly={!this.state.editable} />)}
-          </FormItem>
-        </Form>
+        <div style={{ padding: '16px 0' }}>
+          <Editor
+            model={content}
+            onModelChange={this.onContentChange} />
+        </div>
         <div style={{ float: "right" }}>
-          <Button
-            type="dashed"
-            disabled={this.state.editable}
-            onClick={this.onModify}
-            style={{ marginRight: 8 }}>
-            <FormattedMessage id="ACT_MODIFY" />
-          </Button>
           <Button
             type="primary"
             onClick={this.onSubmit}
-            loading={this.state.loading}
-            disabled={!this.state.editable}>
+            loading={this.state.loading}>
             <FormattedMessage id="ACT_SAVE" />
           </Button>
         </div>
@@ -91,4 +69,4 @@ class CompanyProfile extends React.PureComponent {
   }
 }
 
-export default withRouter(injectIntl(Form.create()(CompanyProfile)));
+export default withRouter(injectIntl(CompanyProfile));
