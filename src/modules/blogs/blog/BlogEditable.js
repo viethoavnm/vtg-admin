@@ -9,8 +9,8 @@ import { getBlog, modifyBlog, createBlog } from '../BlogServices';
 import { Input, Form, Button, Divider, Icon, Select, message, Modal } from 'antd';
 import { RESOURCES_PATH } from 'consts';
 
-const STATUS_PUBLIC = 1;
-const STATUS_PRIVATE = 0;
+const STATUS_PUBLIC = 'PUBLISHED';
+const STATUS_PRIVATE = 'DRAFT';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const formItemLayout = {

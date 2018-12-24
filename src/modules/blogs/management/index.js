@@ -17,8 +17,8 @@ import {
 } from 'antd';
 
 const Option = Select.Option;
-const STATUS_PUBLIC = 1;
-const STATUS_PRIVATE = 0;
+const STATUS_PUBLIC = 'PUBLISHED';
+const STATUS_PRIVATE = 'DRAFT';
 const PAGE_SIZE = 10;
 
 class BlogWrapper extends React.PureComponent {

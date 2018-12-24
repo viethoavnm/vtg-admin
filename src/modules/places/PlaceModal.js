@@ -1,7 +1,6 @@
 import React from 'react';
-import { normFile } from '../../utils';
 import Prompt from 'components/Prompt';
-import { Upload } from '../common/components';
+import { Upload } from 'components';
 import { FormattedMessage } from 'react-intl';
 import { createPlace, updatePlace } from './services'
 import { RESOURCES_PATH } from '../common/constants';
@@ -98,6 +97,18 @@ class PlaceModal extends React.Component {
         })
     }
   }
+  
+  checkFileUpload = (e) => {
+    const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
+    if (e && e.file.size > MAX_UPLOAD_SIZE) {
+      message.warn(this.props.t('IMAGE_TOO_LARGE'));
+      return false;
+    }
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
 
   render = () => {
     const { show, form, addMode } = this.props;
@@ -153,7 +164,7 @@ class PlaceModal extends React.Component {
             label={<FormattedMessage id="IMG_BANNER" />}>
             {getFieldDecorator('contentNames', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
+              getValueFromEvent: this.checkFileUpload,
               rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_BANNER') }]
             })(
               <Upload listType="picture-card" multiple>
@@ -170,7 +181,7 @@ class PlaceModal extends React.Component {
             label={<FormattedMessage id="IMG_ADS_1" />}>
             {getFieldDecorator('ads1', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
+              getValueFromEvent: this.checkFileUpload,
               rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_F') }]
             })(
               <Upload listType="picture">
@@ -193,7 +204,7 @@ class PlaceModal extends React.Component {
             label={<FormattedMessage id="IMG_ADS_2" />}>
             {getFieldDecorator('ads2', {
               valuePropName: 'fileList',
-              getValueFromEvent: normFile,
+              getValueFromEvent: this.checkFileUpload,
               rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_S') }]
             })(
               <Upload listType="picture">

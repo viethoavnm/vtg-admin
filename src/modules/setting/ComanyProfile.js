@@ -27,6 +27,18 @@ class CompanyProfile extends React.PureComponent {
     });
   }
 
+  checkFileUpload = (e) => {
+    const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
+    if (e && e.file.size > MAX_UPLOAD_SIZE) {
+      message.warn(this.props.t('IMAGE_TOO_LARGE'));
+      return false;
+    }
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  }
+
   componentDidMount() {
     getCompanyInfo()
       .then((data) => {
@@ -39,8 +51,11 @@ class CompanyProfile extends React.PureComponent {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator, getFieldsValue } = this.props.form;
     const placeholder = this.props.intl.formatMessage({ id: 'INPUT_INFORMATION' });
+    const { headerLogo, footerLogo } = getFieldsValue(['headerLogo', 'footerLogo']);
+    const showUploadHeader = !headerLogo || (headerLogo && !headerLogo.length),
+      showUploadFooter = !footerLogo || (footerLogo && !footerLogo.length);
     return (
       <div className="container-fluid">
         <div className="row">
@@ -103,14 +118,14 @@ class CompanyProfile extends React.PureComponent {
                 {getFieldDecorator('headerLogo',
                   {
                     valuePropName: 'fileList',
-                    getValueFromEvent: (e) => (Array.isArray(e) ? e : e && e.fileList),
+                    getValueFromEvent: this.checkFileUpload,
                     rules: [{ required: true, message: <FormattedMessage id="REQUIRED_INPUT" /> }]
                   })(
-                    <Upload listType="picture-card">
-                      <div>
+                    <Upload listType="picture-card" >
+                      {showUploadHeader && <div>
                         <Icon type="plus" />
                         <div className="ant-upload-text"><FormattedMessage id="ACT_UPLOAD" /></div>
-                      </div>
+                      </div>}
                     </Upload>
                   )}
               </FormItem>
@@ -118,14 +133,14 @@ class CompanyProfile extends React.PureComponent {
                 {getFieldDecorator('footerLogo',
                   {
                     valuePropName: 'fileList',
-                    getValueFromEvent: (e) => (Array.isArray(e) ? e : e && e.fileList),
+                    getValueFromEvent: this.checkFileUpload,
                     rules: [{ required: true, message: <FormattedMessage id="REQUIRED_INPUT" /> }]
                   })(
                     <Upload listType="picture-card">
-                      <div>
+                      {showUploadFooter && <div>
                         <Icon type="plus" />
                         <div className="ant-upload-text"><FormattedMessage id="ACT_UPLOAD" /></div>
-                      </div>
+                      </div>}
                     </Upload>
                   )}
               </FormItem>

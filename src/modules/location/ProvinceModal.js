@@ -18,8 +18,6 @@ const formItemLayout = {
   },
 };
 
-const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
-
 class ProvinceModal extends React.Component {
   state = { loading: false }
 
@@ -68,6 +66,7 @@ class ProvinceModal extends React.Component {
   }
 
   checkFileUpload = (e) => {
+    const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
     if (e && e.file.size > MAX_UPLOAD_SIZE) {
       message.warn(this.props.t('IMAGE_TOO_LARGE'));
       return false;
