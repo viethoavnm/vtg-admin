@@ -59,16 +59,59 @@ export default [{
   title: 'SETTING',
   component: 'Setting',
   icon: 'setting',
-  subComponent: [{
-    url: '/setting/page-info',
-    title: 'MENU_PAGE_INFO',
-    component: 'SettingPageInfo',
-  },
-  {
-    url: '/setting/company-profile',
-    title: 'MENU_COMPANY_PROFILE',
-    component: 'SettingCompanyProfile',
-  }]
+  subComponent: [
+    {
+      url: '/setting/copyright',
+      title: 'MENU_SETTING_COPYRIGHT',
+      props: { mode: 'MENU_SETTING_COPYRIGHT' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/about',
+      title: 'MENU_SETTING_ABOUT_US',
+      props: { mode: 'MENU_SETTING_ABOUT_US' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/conditions',
+      title: 'MENU_SETTING_CONDITIONS',
+      props: { mode: 'MENU_SETTING_CONDITIONS' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/activity',
+      title: 'MENU_SETTING_ACTIVITY',
+      props: { mode: 'MENU_SETTING_ACTIVITY' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/support',
+      title: 'MENU_SETTING_SUPPORT',
+      props: { mode: 'MENU_SETTING_SUPPORT' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/contact',
+      title: 'MENU_SETTING_CONTACT',
+      props: { mode: 'MENU_SETTING_CONTACT' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/career',
+      title: 'MENU_SETTING_CAREER',
+      props: { mode: 'MENU_SETTING_CAREER' },
+      component: 'SettingOther',
+    },
+    {
+      url: '/setting/page-info',
+      title: 'MENU_PAGE_INFO',
+      component: 'SettingPageInfo',
+    },
+    {
+      url: '/setting/company-profile',
+      title: 'MENU_COMPANY_PROFILE',
+      component: 'SettingCompanyProfile',
+    }]
 },
 {
   hide: true,

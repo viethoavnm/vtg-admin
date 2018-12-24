@@ -22,7 +22,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   try {
     Common.Actions.removeLoading();
-    if (response.data.code === -1)
+    if (response.data.code !== 200)
       return Promise.reject(response.data);
     return response.data.value;
   } catch (error) {
@@ -34,11 +34,8 @@ instance.interceptors.response.use(function (response) {
     if (error.response.status === 401) {
       Common.Actions.requestLogout()
     }
-    else
-      return Promise.reject(error);
-  } catch (error) {
-    return Promise.reject(error);
-  }
+  } catch (error) { }
+  return Promise.reject(error);
 });
 
 export default instance;

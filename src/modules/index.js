@@ -43,16 +43,16 @@ export default {
     loader: () => import('./blogs/copyright'),
     loading: Loading
   }),
-  Setting: loadable({
-    loader: () => import('./setting'),
-    loading: Loading
-  }),
   SettingPageInfo: loadable({
     loader: () => import('./setting/PageInfo'),
     loading: Loading
   }),
   SettingCompanyProfile: loadable({
     loader: () => import('./setting/ComanyProfile'),
+    loading: Loading
+  }),
+  SettingOther: loadable({
+    loader: () => import('./setting/Other'),
     loading: Loading
   }),
   UserInfo: loadable({

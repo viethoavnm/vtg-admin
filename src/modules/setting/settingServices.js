@@ -27,3 +27,11 @@ export function setCompanyInfo(data) {
 export function getCompanyInfo() {
   return axios.get('api/setting/1').then((res) => (JSON.parse(res.value)));
 }
+
+export function putSetting(data) {
+  return axios.put('api/setting/', data)
+}
+
+export function getSetting(id) {
+  return axios.get(`api/setting/${id}`);
+}
