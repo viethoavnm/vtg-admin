@@ -55,3 +55,11 @@ export function setCopyrightInfo(data) {
 export function getCopyrightInfo() {
   return axios.get('api/setting/2');
 }
+
+export function deleteManyBlog(ids) {
+  return axios.delete('api/blog/delete-many', { params: { ids } })
+}
+
+export function updateStatus(ids, status) {
+  return axios.put('api/blog/update-status', { status }, { params: { ids } })
+}

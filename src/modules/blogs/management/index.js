@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { getBlogList, modifyBlog, deleteBlog } from '../BlogServices';
+import { getBlogList, modifyBlog, deleteBlog, updateStatus, deleteManyBlog } from '../BlogServices';
 import { initCategories, setPost } from '../blogReudux';
 import {
   message,
@@ -50,13 +50,15 @@ class BlogWrapper extends React.PureComponent {
     this.props.history.push(`/blog/modify?post=${item.id}`)
   }
 
-  onChangeStatus = (item, value) => {
-    modifyBlog({ ...item, status: value })
+  onChangeStatus = ({ id }, value) => {
+    updateStatus(id, value)
       .then(() => {
         message.success(this.t('POST_UPDATE_DONE'))
         this.fetch()
       })
-      .catch(this.showError)
+      .catch(() => {
+        message.error(this.t('BLOG_UPDATE_STATUS_FAIL'))
+      })
   }
 
   onDelete = ({ id }) => {
@@ -72,7 +74,18 @@ class BlogWrapper extends React.PureComponent {
     Modal.confirm({
       title: this.t('POST_DELETE_SELECTED'),
       okText: this.t('ACT_DELETE'),
-      cancelText: this.t('ACT_CANCEL')
+      cancelText: this.t('ACT_CANCEL'),
+      onOk: () => {
+        deleteManyBlog(this.state.selected.map(({ id }) => (id)).toString())
+          .then(() => {
+            this.fetch(0);
+            message.success(this.t('BLOG_DELETE_DONE'));
+            this.setState({ selected: [] })
+          })
+          .catch(() => {
+            message.warning(this.t('ERROR'))
+          })
+      }
     });
   }
 
@@ -80,7 +93,17 @@ class BlogWrapper extends React.PureComponent {
     Modal.confirm({
       title: this.t('POST_UPDATE_STATUS_CONFIRM'),
       okText: this.t('ACT_SAVE'),
-      cancelText: this.t('ACT_CANCEL')
+      cancelText: this.t('ACT_CANCEL'),
+      onOk: () => {
+        updateStatus(this.state.selected.map(({ id }) => (id)).toString(), e)
+          .then(() => {
+            this.fetch();
+            message.success(this.t('POST_UPDATE_DONE'));
+          })
+          .catch(() => {
+            message.warning(this.t('BLOG_UPDATE_STATUS_FAIL_MANY'))
+          })
+      }
     });
   }
 
@@ -89,7 +112,7 @@ class BlogWrapper extends React.PureComponent {
   }
 
   showError = () => {
-    message.error(<span>Something error! Please try again.</span>);
+    message.error(this.t('ERROR'));
   }
 
   onChangeCategory = (value) => {
