@@ -3,7 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { getBlogList, modifyBlog, deleteBlog, updateStatus, deleteManyBlog } from '../BlogServices';
+import { getBlogList, deleteBlog, updateStatus, deleteManyBlog } from '../BlogServices';
 import { initCategories, setPost } from '../blogReudux';
 import {
   message,
