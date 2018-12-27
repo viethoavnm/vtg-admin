@@ -18,7 +18,7 @@ const LIST = {
 }
 
 class CompanyProfile extends React.PureComponent {
-  state = { loading: false };
+  state = { loading: false, content: '' };
   onSubmit = () => {
     this.setState({ loading: true })
     const { mode } = this.props;
@@ -34,7 +34,7 @@ class CompanyProfile extends React.PureComponent {
       })
   }
 
-  onModelChange = (content) => {
+  onContentChange = (content) => {
     this.setState({ content })
   }
 
