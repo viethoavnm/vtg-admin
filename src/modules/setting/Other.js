@@ -7,7 +7,6 @@ import { putSetting, getSetting } from './settingServices';
 import Editor from 'components/Editor';
 import './Settings.less';
 
-
 const LIST = {
   "MENU_SETTING_COPYRIGHT": 3,
   "MENU_SETTING_ABOUT_US": 4,

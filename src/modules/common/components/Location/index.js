@@ -1,7 +1,8 @@
 import React from 'react';
 import Map from './Map';
 
-const MAP_URL = `https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`;
+const API_KEY = 'AIzaSyDIAWyPczV2h0nIV_FtrDUXcFhtao3QyVM';
+const MAP_URL = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
 
 export default class MapWrapper extends React.Component {
   render() {

@@ -61,5 +61,5 @@ export function deleteManyBlog(ids) {
 }
 
 export function updateStatus(ids, status) {
-  return axios.put('api/blog/update-status', { status }, { params: { ids } })
+  return axios.put('api/blog/update-status', null, { params: { ids, status } })
 }
