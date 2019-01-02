@@ -143,22 +143,22 @@ export default [{
   subComponent: [{
     url: '/hotel/list',
     title: 'MENU_HOTEL_LIST',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/hotel/upload',
     title: 'MENU_HOTEL_UPLOAD',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/hotel/services',
     title: 'MENU_HOTEL_SERVICES',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/hotel/policy',
     title: 'MENU_HOTEL_POLICY',
-    component: 'SettingOther',
+    component: 'Blank',
   }]
 },
 {
@@ -168,22 +168,22 @@ export default [{
   subComponent: [{
     url: '/room/hotel',
     title: 'MENU_ROOM_HOTEL',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/room/homstay',
     title: 'MENU_ROOM_HOMESTAY',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/room/apartment',
     title: 'MENU_ROOM_APARTMENT',
-    component: 'SettingOther',
+    component: 'Blank',
   },
   {
     url: '/room/villa',
     title: 'MENU_ROOM_VILLA',
-    component: 'SettingOther',
+    component: 'Blank',
   }]
 },
 {

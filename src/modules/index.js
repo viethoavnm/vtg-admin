@@ -1,8 +1,10 @@
+import React from 'react';
 import loadable from 'react-loadable';
 import { Loading } from './common/components';
 
 export default {
   Loading,
+  Blank: () => (<span />),
   Login: loadable({
     loader: () => import('./auth/Login'),
     loading: Loading
