@@ -238,5 +238,6 @@
   "SUGGEST_SIZE_ADS": "Ảnh nên có kích thước: 1024px * 768px",
   "BLOG_COPYRIGHT": "Quản lý bản quyền bài viết",
   "BLOG_UPDATE_STATUS_FAIL_MANY": "Không thể thay đổi trạng thái do có bài viết chưa hoàn thiện. Bạn vui lòng chọn lại hoặc thay đổi trạng thái từng bài viết",
-  "BLOG_UPDATE_STATUS_FAIL": "Không thể thay đổi trạng thái do bài viết chưa hoàn thiện. Bạn có muốn chỉnh sửa bày viết này không?"
+  "BLOG_UPDATE_STATUS_FAIL": "Không thể thay đổi trạng thái do bài viết chưa hoàn thiện. Bạn có muốn chỉnh sửa bày viết này không?",
+  "NONE": "Chưa được phân loại"
 }

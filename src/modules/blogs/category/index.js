@@ -9,7 +9,7 @@ const Option = Select.Option;
 const STATUS_PUBLIC = 1;
 const STATUS_PRIVATE = 0;
 const PAGE_SIZE = 10;
-const NONE = 'NONE_CATEGORY';
+const NONE = 'NONE';
 
 class CategoryWrapper extends React.PureComponent {
   state = { modal: false, addMode: true, content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: {}, countries: [] }
