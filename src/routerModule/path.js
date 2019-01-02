@@ -55,6 +55,27 @@ export default [{
   icon: 'profile'
 },
 {
+  title: 'MENU_WEBSITE_PROFILE',
+  url: '/website',
+  icon: 'global',
+  subComponent: []
+},
+{
+  title: 'MENU_COMPANY_PROFILE',
+  url: '/company',
+  icon: 'copyright',
+  subComponent: [{
+    url: '/setting/page-info',
+    title: 'MENU_PAGE_INFO',
+    component: 'SettingPageInfo',
+  },
+  {
+    url: '/setting/company-profile',
+    title: 'MENU_COMPANY_PROFILE',
+    component: 'SettingCompanyProfile',
+  }]
+},
+{
   url: '/setting',
   title: 'SETTING',
   component: 'Setting',
@@ -101,16 +122,6 @@ export default [{
       title: 'MENU_SETTING_CAREER',
       props: { mode: 'MENU_SETTING_CAREER' },
       component: 'SettingOther',
-    },
-    {
-      url: '/setting/page-info',
-      title: 'MENU_PAGE_INFO',
-      component: 'SettingPageInfo',
-    },
-    {
-      url: '/setting/company-profile',
-      title: 'MENU_COMPANY_PROFILE',
-      component: 'SettingCompanyProfile',
     }]
 },
 {
@@ -128,8 +139,52 @@ export default [{
 {
   url: '/hotel',
   title: 'MENU_HOTEL',
-  component: 'AddHotel',
-  icon: 'bank'
+  icon: 'bank',
+  subComponent: [{
+    url: '/hotel/list',
+    title: 'MENU_HOTEL_LIST',
+    component: 'SettingOther',
+  },
+  {
+    url: '/hotel/upload',
+    title: 'MENU_HOTEL_UPLOAD',
+    component: 'SettingOther',
+  },
+  {
+    url: '/hotel/services',
+    title: 'MENU_HOTEL_SERVICES',
+    component: 'SettingOther',
+  },
+  {
+    url: '/hotel/policy',
+    title: 'MENU_HOTEL_POLICY',
+    component: 'SettingOther',
+  }]
+},
+{
+  url: '/room',
+  title: 'MENU_ROOM_MANAGEMENT',
+  icon: 'home',
+  subComponent: [{
+    url: '/room/hotel',
+    title: 'MENU_ROOM_HOTEL',
+    component: 'SettingOther',
+  },
+  {
+    url: '/room/homstay',
+    title: 'MENU_ROOM_HOMESTAY',
+    component: 'SettingOther',
+  },
+  {
+    url: '/room/apartment',
+    title: 'MENU_ROOM_APARTMENT',
+    component: 'SettingOther',
+  },
+  {
+    url: '/room/villa',
+    title: 'MENU_ROOM_VILLA',
+    component: 'SettingOther',
+  }]
 },
 {
   hide: true,

@@ -33,9 +33,12 @@ instance.interceptors.response.use(function (response) {
   try {
     if (error.response.status === 401) {
       Common.Actions.requestLogout()
+    } else {
+      return Promise.reject(error);
     }
-  } catch (error) { }
-  return Promise.reject(error);
+  } catch (error) {
+    return Promise.reject(error);
+  }
 });
 
 export default instance;
