@@ -1,4 +1,4 @@
-import axios from '../../utils/api';
+import axios from 'utils/api';
 
 export function getCountryList(params) {
   return axios.get('api/country/get-all', { params });

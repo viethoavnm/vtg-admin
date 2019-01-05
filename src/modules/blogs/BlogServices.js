@@ -1,4 +1,4 @@
-import axios from '../../utils/api';
+import axios from 'utils/api';
 
 export function getBlogCategories(params) {
   return axios.get('api/blog-category/get-all', { params });

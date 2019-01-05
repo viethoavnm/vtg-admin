@@ -1,3 +1,5 @@
-import axios from '../../utils/api';
+import axios from 'utils/api';
 
-export const createHotel = (data) => (axios.post('/api/hotel/', data));
+export function getAllHotel(params) {
+  return axios.get('api/hotel/get-all', { params })
+}

@@ -1,4 +1,4 @@
-import axios from '../../utils/api';
+import axios from 'utils/api';
 
 export function getPageList() {
   return axios.get('api/page-info/get-all');

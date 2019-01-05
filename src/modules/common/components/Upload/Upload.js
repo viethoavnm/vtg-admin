@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../../../utils/api';
+import axios from 'utils/api';
 import { Upload } from 'antd';
 
 const UPLOAD_URL = 'api/content/create-upload';

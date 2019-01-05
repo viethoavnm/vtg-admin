@@ -61,12 +61,8 @@ export default {
     loader: () => import('./user-info'),
     loading: Loading
   }),
-  ListHotel: loadable({
-    loader: () => import('./hotel/ListHotel'),
-    loading: Loading
-  }),
-  AddHotel: loadable({
-    loader: () => import('./hotel/AddHotel'),
+  HotelManagement: loadable({
+    loader: () => import('./hotel/management'),
     loading: Loading
   })
 }

@@ -1,4 +1,4 @@
-import axios from '../../utils/api';
+import axios from 'utils/api';
 
 export function getPlaceList(params) {
   return axios.get('api/place/get-all', { params });

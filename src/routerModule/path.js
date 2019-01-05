@@ -140,55 +140,51 @@ export default [{
   url: '/hotel',
   title: 'MENU_HOTEL',
   icon: 'bank',
-  subComponent: [{
-    url: '/hotel/list',
-    title: 'MENU_HOTEL_LIST',
-    component: 'Blank',
-  },
-  {
-    url: '/hotel/upload',
-    title: 'MENU_HOTEL_UPLOAD',
-    component: 'Blank',
-  },
-  {
-    url: '/hotel/services',
-    title: 'MENU_HOTEL_SERVICES',
-    component: 'Blank',
-  },
-  {
-    url: '/hotel/policy',
-    title: 'MENU_HOTEL_POLICY',
-    component: 'Blank',
-  }]
+  subComponent: [
+    {
+      url: '/hotel/list',
+      title: 'MENU_HOTEL_LIST',
+      component: 'HotelManagement',
+    },
+    {
+      url: '/hotel/upload',
+      title: 'MENU_HOTEL_UPLOAD',
+      component: 'Blank',
+    },
+    {
+      url: '/hotel/services',
+      title: 'MENU_HOTEL_SERVICES',
+      component: 'Blank',
+    },
+    {
+      url: '/hotel/policy',
+      title: 'MENU_HOTEL_POLICY',
+      component: 'Blank',
+    }]
 },
 {
   url: '/room',
   title: 'MENU_ROOM_MANAGEMENT',
   icon: 'home',
-  subComponent: [{
-    url: '/room/hotel',
-    title: 'MENU_ROOM_HOTEL',
-    component: 'Blank',
-  },
-  {
-    url: '/room/homstay',
-    title: 'MENU_ROOM_HOMESTAY',
-    component: 'Blank',
-  },
-  {
-    url: '/room/apartment',
-    title: 'MENU_ROOM_APARTMENT',
-    component: 'Blank',
-  },
-  {
-    url: '/room/villa',
-    title: 'MENU_ROOM_VILLA',
-    component: 'Blank',
-  }]
-},
-{
-  hide: true,
-  url: '/hotel/create',
-  title: 'MENU_HOTEL_CREATE',
-  component: 'AddHotel',
+  subComponent: [
+    {
+      url: '/room/hotel',
+      title: 'MENU_ROOM_HOTEL',
+      component: 'Blank',
+    },
+    {
+      url: '/room/homstay',
+      title: 'MENU_ROOM_HOMESTAY',
+      component: 'Blank',
+    },
+    {
+      url: '/room/apartment',
+      title: 'MENU_ROOM_APARTMENT',
+      component: 'Blank',
+    },
+    {
+      url: '/room/villa',
+      title: 'MENU_ROOM_VILLA',
+      component: 'Blank',
+    }]
 }]
