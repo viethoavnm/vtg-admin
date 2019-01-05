@@ -10,6 +10,20 @@ import './Layout.less';
 const { Content } = Layout;
 
 class AppLayout extends React.PureComponent {
+  onLogout = (e) => {
+    if (e.key === 'logout') {
+      window.location = '#/sign-out';
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('storage', this.onLogout, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.onLogout, false)
+  }
+  
   render() {
     return (
       <Layout style={{ minHeight: '100vh' }}>

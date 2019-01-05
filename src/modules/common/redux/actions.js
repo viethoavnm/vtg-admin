@@ -25,6 +25,7 @@ export const requestLogin = (res, user) => {
 
 export const requestLogout = () => {
   cookie.remove('JWT');
+  localStorage.setItem('logout', Date.now())
   store.dispatch({ type: Types.REQUEST_LOGOUT });
   window.location.href = '#/login';
 }
