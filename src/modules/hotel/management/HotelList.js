@@ -7,7 +7,7 @@ import { Table, Select, Input, Button, Tooltip, Badge } from 'antd';
 const PAGE_SIZE = 10;
 const Option = Select.Option;
 
-class Places extends React.Component {
+class HotelList extends React.Component {
   state = { content: [], size: PAGE_SIZE, number: 0, totalElements: 0, query: {}, selectedRowKeys: [] }
 
   columns = getColumns(this)
@@ -171,4 +171,4 @@ const getColumns = (self) => ([
   }
 ])
 
-export default Places
+export default HotelList

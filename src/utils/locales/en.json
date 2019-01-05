@@ -287,5 +287,16 @@
   "SERVICE_NAME_PLH": "Hãy nhập tên dịch vụ",
   "SERVICE_NAME_REQUIRED": "Vui lòng nhập tên dịch vụ",
   "ICON": "Icon",
-  "ICON_REQUIRED": "Vui lòng tải lên icon"
+  "ICON_REQUIRED": "Vui lòng tải lên icon",
+  "HOTEL_ROOM_TYPE": "Loại phòng khách sạn",
+  "ROOM_TYPE": "Loại phòng",
+  "ADD_ROOM_TYPE": "Thêm loại phòng",
+  "ROOM_TYPE_DELETE_CONFIRM": "Bạn có chắc chắn muốn xóa loại phòng này?",
+  "ROOM_NAME": "Tên phòng",
+  "ADD_ROOM_NAME": "Thêm tên phòng",
+  "ROOM_NAME_DELETE_CONFIRM": "Bạn có chắc chắn muốn xóa tên phòng này?",
+  "VIEW_DIRECTION": "Hướng nhìn",
+  "ROOM_DIRECTION": "Hướng phòng",
+  "ADD_ROOM_DIRECTION": "Thêm hướng phòng",
+  "UTILS_AND_DEVICES": "Tiện nghi và trang bị trong phòng"
 }

@@ -72,5 +72,9 @@ export default {
   HotelUtilsAndServices: loadable({
     loader: () => import('./hotel/utilsAndServices'),
     loading: Loading
-  })
+  }),
+  RoomManagement: loadable({
+    loader: () => import('./room/management'),
+    loading: Loading
+  }),
 }

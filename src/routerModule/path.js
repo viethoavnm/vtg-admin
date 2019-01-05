@@ -170,7 +170,7 @@ export default [{
     {
       url: '/room/hotel',
       title: 'MENU_ROOM_HOTEL',
-      component: 'Blank',
+      component: 'RoomManagement',
     },
     {
       url: '/room/homstay',
