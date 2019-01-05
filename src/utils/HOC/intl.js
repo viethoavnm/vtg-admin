@@ -1,5 +1,5 @@
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedDate, FormattedMessage, FormattedNumber } from 'react-intl';
 
 export default function inject(Component) {
   class WrappIntl extends React.Component {
@@ -12,4 +12,10 @@ export default function inject(Component) {
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
+export {
+  FormattedDate,
+  FormattedMessage,
+  FormattedNumber
 }

@@ -149,7 +149,7 @@ export default [{
     {
       url: '/hotel/upload',
       title: 'MENU_HOTEL_UPLOAD',
-      component: 'Blank',
+      component: 'HotelUpload',
     },
     {
       url: '/hotel/services',

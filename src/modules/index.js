@@ -64,5 +64,9 @@ export default {
   HotelManagement: loadable({
     loader: () => import('./hotel/management'),
     loading: Loading
+  }),
+  HotelUpload: loadable({
+    loader: () => import('./hotel/upload'),
+    loading: Loading
   })
 }

@@ -266,5 +266,12 @@
   "VILLA": "Biệt thự",
   "APPROVE": "Duyệt",
   "BLOCK": "Khóa",
-  "UNBLOCK": "Mở khóa"
+  "UNBLOCK": "Mở khóa",
+  "IMAGE_AND_VIDEO": "Hình ảnh và video!",
+  "EDIT_INTRO": "Sửa gới thiệu",
+  "WARING": "Chú ý!",
+  "EDIT_WARNING": "Sửa chú ý",
+  "SUGGESTION": "Gợi ý!",
+  "EDIT_SUGGESTION": "Sửa gợi ý",
+  "CANCEL": "Hủy"
 }
