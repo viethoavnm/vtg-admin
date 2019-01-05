@@ -154,7 +154,7 @@ export default [{
     {
       url: '/hotel/services',
       title: 'MENU_HOTEL_SERVICES',
-      component: 'Blank',
+      component: 'HotelUtilsAndServices',
     },
     {
       url: '/hotel/policy',

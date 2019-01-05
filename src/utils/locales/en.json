@@ -273,5 +273,19 @@
   "EDIT_WARNING": "Sửa chú ý",
   "SUGGESTION": "Gợi ý!",
   "EDIT_SUGGESTION": "Sửa gợi ý",
-  "CANCEL": "Hủy"
+  "CANCEL": "Hủy",
+  "UTILS": "Tiện nghi",
+  "ADD_UTILS": "Thêm tiện nghi",
+  "EDIT_UTILS": "Thay đổi tiện nghi",
+  "UTIL_NAME": "Tên tiện nghi",
+  "UTIL_NAME_PLH": "Hãy nhập tên tiện nghi",
+  "UTIL_NAME_REQUIRED": "Vui lòng nhập tên tiện nghi",
+  "SERVICES": "Dịch vụ",
+  "ADD_SERVICES": "Thêm dịch vụ",
+  "EDIT_SERVICES": "Thay đổi dịch vụ",
+  "SERVICE_NAME": "Tên dịch vụ",
+  "SERVICE_NAME_PLH": "Hãy nhập tên dịch vụ",
+  "SERVICE_NAME_REQUIRED": "Vui lòng nhập tên dịch vụ",
+  "ICON": "Icon",
+  "ICON_REQUIRED": "Vui lòng tải lên icon"
 }

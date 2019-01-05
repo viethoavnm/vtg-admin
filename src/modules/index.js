@@ -68,5 +68,9 @@ export default {
   HotelUpload: loadable({
     loader: () => import('./hotel/upload'),
     loading: Loading
+  }),
+  HotelUtilsAndServices: loadable({
+    loader: () => import('./hotel/utilsAndServices'),
+    loading: Loading
   })
 }
