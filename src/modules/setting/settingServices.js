@@ -17,21 +17,22 @@ export function removePage(id) {
 }
 
 export function setCompanyInfo(data) {
-  return axios.put('api/setting/', {
-    id: 1,
+  return axios.put('api/setting/save-by-name', {
     name: 'CompanyProfile',
     value: JSON.stringify(data)
   })
 }
 
 export function getCompanyInfo() {
-  return axios.get('api/setting/1').then((res) => (JSON.parse(res.value)));
+  return axios.get('api/setting/get-by-name?name=CompanyProfile')
+    .then((data) => (data ? JSON.parse(data.value) : {}));
 }
 
 export function putSetting(data) {
-  return axios.put('api/setting/', data)
+  return axios.put('api/setting/save-by-name', data)
 }
 
-export function getSetting(id) {
-  return axios.get(`api/setting/${id}`);
+export function getSetting(name) {
+  return axios.get('api/setting/get-by-name', { params: { name } })
+    .then((data) => (data ? data : {}));
 }

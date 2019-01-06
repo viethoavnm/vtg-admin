@@ -31,8 +31,7 @@ class AppSlider extends React.Component {
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
         className="sidebar"
-        breakpoint="lg"
-      >
+        breakpoint="lg">
         <div className="logo">
           <a href="/admin">
             <h2>Spetrip<span style={{ color: 'cornflowerblue' }}>.com</span></h2>

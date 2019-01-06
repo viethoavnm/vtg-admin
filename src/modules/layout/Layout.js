@@ -23,10 +23,10 @@ class AppLayout extends React.PureComponent {
   componentWillUnmount() {
     window.removeEventListener('storage', this.onLogout, false)
   }
-  
+
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout>
         <Sider />
         <Layout className="page-container">
           <Header />

@@ -1,6 +1,6 @@
 import React from 'react';
-import Upload from '../common/components/Upload';
-import Location from '../common/components/Location';
+import Upload from 'components/Upload';
+import Location from 'components/Location';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { Button, Form, Input, Icon, message } from 'antd';
 import { setCompanyInfo, getCompanyInfo } from './settingServices';
@@ -19,7 +19,6 @@ class CompanyProfile extends React.PureComponent {
           headerLogo: values.headerLogo[0].response.name,
           footerLogo: values.footerLogo[0].response.name
         }
-        console.log("#Submit:", data);
         setCompanyInfo(data)
           .then(() => { message.success('Updated!') })
           .catch(() => { message.error('Update failed!') })
