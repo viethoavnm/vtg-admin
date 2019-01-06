@@ -97,7 +97,7 @@ class PlaceModal extends React.Component {
         })
     }
   }
-  
+
   checkFileUpload = (e) => {
     const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
     if (e && e.file.size > MAX_UPLOAD_SIZE) {
@@ -195,7 +195,11 @@ class PlaceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_1" />}>
             {getFieldDecorator('url1',
-              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_F') }] })(
+              {
+                rules: [
+                  { required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_F') },
+                  { type: 'url', message: <FormattedMessage id="URL_INVALID" /> }]
+              })(
                 <Input placeholder={this.props.t('PLACE_HINT_ADS_LINK_F')} />)}
           </FormItem>
           <FormItem
@@ -218,7 +222,11 @@ class PlaceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_2" />}>
             {getFieldDecorator('url2',
-              { rules: [{ required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_S') }] })(
+              {
+                rules: [
+                  { required: true, message: this.props.t('PLACE_REQUIRED_ADS_LINK_S') },
+                  { type: 'url', message: <FormattedMessage id="URL_INVALID" /> }]
+              })(
                 <Input placeholder={this.props.t('PLACE_HINT_ADS_LINK_S')} />)}
           </FormItem>
           <FormItem

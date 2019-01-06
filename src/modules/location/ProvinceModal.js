@@ -208,7 +208,10 @@ class ProvinceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_1" />}>
             {getFieldDecorator('url1',
-              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_F') }] })(
+              {
+                rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_F') },
+                { type: 'url', message: <FormattedMessage id="URL_INVALID" /> }]
+              })(
                 <Input placeholder={this.props.t('CITY_HINT_ADS_LINK_F')} />)}
           </FormItem>
           <FormItem
@@ -231,7 +234,11 @@ class ProvinceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="LINK_ADS_2" />}>
             {getFieldDecorator('url2',
-              { rules: [{ required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_S') }] })(
+              {
+                rules: [
+                  { required: true, message: this.props.t('CITY_REQUIRED_ADS_LINK_S') },
+                  { type: 'url', message: <FormattedMessage id="URL_INVALID" /> }]
+              })(
                 <Input placeholder={this.props.t('CITY_HINT_ADS_LINK_S')} />)}
           </FormItem>
           <FormItem

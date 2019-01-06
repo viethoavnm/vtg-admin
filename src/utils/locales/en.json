@@ -298,5 +298,7 @@
   "VIEW_DIRECTION": "Hướng nhìn",
   "ROOM_DIRECTION": "Hướng phòng",
   "ADD_ROOM_DIRECTION": "Thêm hướng phòng",
-  "UTILS_AND_DEVICES": "Tiện nghi và trang bị trong phòng"
+  "UTILS_AND_DEVICES": "Tiện nghi và trang bị trong phòng",
+  "URL_INVALID": "URL không hợp lệ!",
+  "SUCCESSFULLY": "Thành công"
 }

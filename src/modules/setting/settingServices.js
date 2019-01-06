@@ -4,12 +4,8 @@ export function getPageList() {
   return axios.get('api/page-info/get-all');
 }
 
-export function createPage(place) {
-  return axios.post('api/page-info/', place);
-}
-
 export function updatePage(place) {
-  return axios.put('api/page-info/', place);
+  return axios.put('api/page-info/save-by-name', place);
 }
 
 export function removePage(id) {
