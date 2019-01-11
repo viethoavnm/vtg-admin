@@ -209,7 +209,7 @@ const getColumns = (self) => ([
   {
     title: <FormattedMessage id="TBL_UPDATE_DATE" />,
     dataIndex: 'modifiedDate',
-    render: (value) => (moment(value).format('ll')),
+    render: (value) => (moment(value).format('DD/MM/YYYY')),
     width: 128,
   },
   {

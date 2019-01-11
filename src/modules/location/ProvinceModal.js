@@ -121,7 +121,8 @@ class ProvinceModal extends React.Component {
       <Modal
         centered
         visible={show}
-        onCancel={this.onClose}
+        closable={false}
+        // onCancel={this.onClose}
         title={<FormattedMessage id={addMode ? "ADD_CITY" : "MODIFY_CITY"} />}
         footer={[
           <Button key="back" onClick={this.onClose}>

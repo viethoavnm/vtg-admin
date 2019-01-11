@@ -74,7 +74,8 @@ class CountryModal extends React.PureComponent {
       <Modal
         centered
         visible={show}
-        onCancel={this.onClose}
+        closable={false}
+        // onCancel={this.onClose}
         title={<FormattedMessage id={addMode ? "ADD_COUNTRY" : "MODIFY_COUNTRY"} />}
         footer={[
           <Button key="back" onClick={this.onClose}>

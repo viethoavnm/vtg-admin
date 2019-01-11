@@ -27,7 +27,7 @@ const formItemLayout = {
 const MAX_UPLOAD_SIZE = 3 * 1024 * 1024;
 
 class Blog extends React.Component {
-  state = { content: '', tagList: [], error: false, unblock: true }
+  state = { content: '', tagList: [], error: false, unblock: false }
   t = (id, values) => (this.props.intl.formatMessage({ id }, values))
 
   onContentChange = (content) => {
@@ -75,15 +75,26 @@ class Blog extends React.Component {
 
   submit = (item, pub = false, noModal) => {
     item.status = pub ? STATUS_PUBLIC : STATUS_PRIVATE;
+    const showSuccess = () => {
+      if (pub) {
+        message.success(this.t('POST_DONE'));
+      }
+    }
+    const showError = () => {
+      message.success(this.t('ERROR'));
+    }
     if (this.props.addMode)
       createBlog(item)
         .then((data) => {
-          this.redirect(data, noModal)
+          this.redirect(data, noModal);
+          showSuccess();
         })
+        .catch(showError);
     else
       modifyBlog({ ...this.post, ...item })
         .then((data) => {
-          this.redirect(data, noModal)
+          this.redirect(data, noModal);
+          showSuccess(showError);
         })
   }
 

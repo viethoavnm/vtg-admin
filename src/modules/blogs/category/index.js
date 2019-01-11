@@ -124,16 +124,10 @@ const getColumns = (self) => ([
     dataIndex: 'title',
   },
   {
-    title: <FormattedMessage id="TBL_CREATED_DATE" />,
-    dataIndex: 'createdDate',
-    width: 130,
-    render: (value) => (<span>{moment(value).format('ll')}</span>)
-  },
-  {
     title: <FormattedMessage id="TBL_UPDATE_DATE" />,
     dataIndex: 'lastUpdate',
     width: 130,
-    render: (value) => (<span>{moment(value).format('ll')}</span>)
+    render: (value) => (<span>{moment(value).format('DD/MM/YYYY')}</span>)
   },
   {
     title: <FormattedMessage id="TBL_STATUS" />,
@@ -141,7 +135,7 @@ const getColumns = (self) => ([
     width: 130,
     render: (item) =>
       (
-        <Select value={item.status} onChange={self.onChangeStatus.bind(self, item)}>
+        <Select value={item.status} onChange={self.onChangeStatus.bind(self, item)} style={{ width: 110 }}>
           <Option value={STATUS_PUBLIC}><FormattedMessage id="PUBLIC" /></Option>
           <Option value={STATUS_PRIVATE}><FormattedMessage id="PRIVATE" /></Option>
         </Select>

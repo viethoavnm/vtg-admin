@@ -15,7 +15,7 @@ class Province extends React.Component {
   t = (id, values) => (this.props.intl.formatMessage({ id }, values))
 
   fetch = (page = this.state.number, size = this.state.size, query = this.state.query) => {
-    return getProvinceList({ page, size, ...query, countryId: query.countryId === '_ALL_' ? undefined : query.countryId })
+    return getProvinceList({ page, size, ...query, sort: 'modifiedDate,desc', countryId: query.countryId === '_ALL_' ? undefined : query.countryId })
       .then((data) => {
         this.setState({ ...data });
       })

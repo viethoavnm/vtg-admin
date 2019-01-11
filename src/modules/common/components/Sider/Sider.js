@@ -20,8 +20,12 @@ class AppSlider extends React.Component {
     this.setState({ collapsed });
   }
 
-  onSelect = ({ key }) => {
-    this.props.history.push(key);
+  onSelect = (key) => () => {
+    if (this.props.location.pathname === key) {
+      window.location.reload();
+    } else {
+      this.props.history.push(key);
+    }
   }
 
   render() {
@@ -40,29 +44,28 @@ class AppSlider extends React.Component {
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[this.props.location.pathname]}
-          onSelect={this.onSelect}
-        >
+          selectedKeys={[this.props.location.pathname]} >
           {PATH.map((menu) => {
             if (menu.hide) {
               return null;
             }
             if (menu.subComponent) {
-              return (<SubMenu
-                key={menu.url}
-                title={<span><Icon type={menu.icon} /><FormattedMessage id={menu.title} /></span>}
-              >
-                {menu.subComponent.map((subMenu) => subMenu.hide
-                  ? null
-                  : (
-                    <Menu.Item key={subMenu.url}>
-                      <FormattedMessage id={subMenu.title} />
-                    </Menu.Item>
-                  ))}
-              </SubMenu>)
+              return (
+                <SubMenu
+                  key={menu.url}
+                  title={<span><Icon type={menu.icon} /><FormattedMessage id={menu.title} /></span>}
+                >
+                  {menu.subComponent.map((subMenu) => subMenu.hide
+                    ? null
+                    : (
+                      <Menu.Item key={subMenu.url} onClick={this.onSelect(subMenu.url)}>
+                        <FormattedMessage id={subMenu.title} />
+                      </Menu.Item>
+                    ))}
+                </SubMenu>)
             } else {
               return (
-                <Menu.Item key={menu.url}>
+                <Menu.Item key={menu.url} onClick={this.onSelect(menu.url)}>
                   <Icon type={menu.icon} />
                   <FormattedMessage id={menu.title} />
                 </Menu.Item>)
