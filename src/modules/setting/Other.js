@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Button, message } from 'antd';
 import { putSetting, getSetting } from './settingServices';
-import Editor from 'components/Editor';
+import Editor from 'components/RichEditor';
 import './Settings.less';
 
 class CompanyProfile extends React.PureComponent {
@@ -41,8 +41,8 @@ class CompanyProfile extends React.PureComponent {
         <span className="text-strike"><FormattedMessage id={this.props.mode} /></span>
         <div style={{ padding: '16px 0' }}>
           <Editor
-            model={content}
-            onModelChange={this.onContentChange} />
+            value={content}
+            onChange={this.onContentChange} />
         </div>
         <div style={{ float: "right" }}>
           <Button

@@ -1,5 +1,5 @@
 import React from 'react';
-import Editor from 'components/Editor'
+import Editor from 'components/RichEditor'
 import injectIntl, { FormattedMessage } from 'intl';
 import { Input, Button, Divider } from 'antd';
 import './Upload.less';

@@ -1,10 +1,10 @@
 import React from 'react';
 import injectIntl from 'intl';
 import Tags from 'components/Tags';
-import Upload from 'components/Upload';
-import Editor from 'components/Editor';
-import Prompt from 'components/Prompt'
 import { connect } from 'react-redux';
+import Upload from 'components/Upload';
+import Editor from 'components/RichEditor';
+import Prompt from 'components/Prompt';
 import { getBlog, modifyBlog, createBlog } from '../BlogServices';
 import { Input, Form, Button, Divider, Icon, Select, message, Modal } from 'antd';
 import { RESOURCES_PATH } from 'consts';
@@ -258,10 +258,9 @@ class Blog extends React.Component {
               label={this.props.t('CONTENT')}>
               {this.state.error && <div id="content" className="error">{this.props.t('POST_REQUIRED_CONTENT_MIN')}</div>}
               <Editor
-                fullToolbar
-                model={content}
-                onUploadedImage={this.onUploadedImage}
-                onModelChange={this.onContentChange}
+                allowUpload
+                value={content}
+                onChange={this.onContentChange}
               />
             </FormItem>
           </div>
