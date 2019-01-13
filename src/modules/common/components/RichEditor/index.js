@@ -112,4 +112,4 @@ HTMLEditor.defaultProps = {
   toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat'
 }
 
-export default injectIntl(scriptLoader(`./{$process.env.PUBLIC_URL}js/tinymce/tinymce.min.js`)(HTMLEditor));
+export default injectIntl(scriptLoader(`/${process.env.PUBLIC_URL}/js/tinymce/tinymce.min.js`)(HTMLEditor));
