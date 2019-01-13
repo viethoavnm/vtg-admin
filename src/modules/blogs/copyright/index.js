@@ -1,7 +1,8 @@
 import React from 'react';
 import injectIntl from 'intl';
+import RichEditor from 'components/RichEditor';
 import { FormattedMessage } from 'react-intl';
-import { Form, Input, Button, message } from 'antd';
+import { Form, Button, message } from 'antd';
 import { setCopyrightInfo, getCopyrightInfo } from '../BlogServices';
 const FormItem = Form.Item;
 
@@ -9,12 +10,16 @@ class CompanyProfile extends React.PureComponent {
   state = { editable: false, loading: false };
 
   onModify = () => {
-    this.setState({ editable: true }, () => { document.querySelector('#content').focus(); })
+    this.setState({ editable: true })
+  }
+
+  onChange = (content) => {
+    this.setState({ content })
   }
 
   onSubmit = () => {
     this.setState({ loading: true })
-    const content = this.props.form.getFieldValue('content');
+    const { content } = this.state;
     setCopyrightInfo(content)
       .then(() => {
         message.success(this.props.t('DONE'));
@@ -29,31 +34,21 @@ class CompanyProfile extends React.PureComponent {
   componentDidMount() {
     getCopyrightInfo()
       .then(({ value }) => {
-        this.props.form.setFieldsValue({ content: value })
+        this.setState({ content: value })
       })
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const placeholder = this.props.t('INPUT_INFORMATION');
     return (
       <div className="container-fluid">
-        <Form>
-          <FormItem label={<FormattedMessage id="BLOG_COPYRIGHT" />} >
-            {getFieldDecorator('content',
-              {
-                rules: [{
-                  required: true,
-                  message: <FormattedMessage id="REQUIRED_INPUT" />
-                }]
-              })(
-                <Input.TextArea
-                  id="content"
-                  rows={10}
-                  placeholder={placeholder}
-                  readOnly={!this.state.editable} />)}
-          </FormItem>
-        </Form>
+        <FormItem label={<FormattedMessage id="BLOG_COPYRIGHT" />} >
+          {this.state.editable ?
+            <RichEditor
+              value={this.state.content}
+              onChange={this.onChange} />
+            : <div dangerouslySetInnerHTML={{ __html: this.state.content }} />
+          }
+        </FormItem>
         <div style={{ float: "right" }}>
           <Button
             type="dashed"

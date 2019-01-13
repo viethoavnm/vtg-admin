@@ -13,7 +13,8 @@ import {
   Button,
   Input,
   Divider,
-  Table
+  Table,
+  Tooltip
 } from 'antd';
 
 const Option = Select.Option;
@@ -154,7 +155,7 @@ class BlogWrapper extends React.PureComponent {
                   value={this.state.query.categoryId}
                   placeholder={this.t('SELECT_BLOG_CATEGORY')}>
                   <Select.Option key={"_ALL_"} value="_ALL_"><FormattedMessage id="ALL" /></Select.Option>
-                  {categories.map(category => (<Option key={category.id} value={category.id}>{category.title}</Option>))}
+                  {categories.map(category => (<Option key={category.id} value={category.id}><Tooltip title={category.title}>{category.title}</Tooltip></Option>))}
                 </Select>
                 <Input.Search
                   placeholder={this.t('SEARCH')}
