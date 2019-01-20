@@ -33,6 +33,12 @@ export default [{
       props: { mode: 'MODIFY_MODE' },
       title: 'MODIFY_BLOG',
       component: 'Blog',
+    },
+    {
+      hide: true,
+      url: '/blog/preview/:id',
+      title: 'PREVIEW_BLOG',
+      component: 'BlogPreview',
     }
   ]
 },

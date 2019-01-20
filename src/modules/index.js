@@ -33,6 +33,10 @@ export default {
     loader: () => import('./blogs/blog'),
     loading: Loading
   }),
+  BlogPreview: loadable({
+    loader: () => import('./blogs/preview'),
+    loading: Loading
+  }),
   BlogManagement: loadable({
     loader: () => import('./blogs/management'),
     loading: Loading

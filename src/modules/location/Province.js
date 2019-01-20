@@ -136,7 +136,8 @@ const getProvinceColumns = (self) => ([
   {
     title: <FormattedMessage id="DESCRIPTION" />,
     dataIndex: 'introduction',
-    width: 200
+    width: 200,
+    render: (value) => (<div className="text text--3l">{value}</div>)
   },
   {
     title: <FormattedMessage id="ACTION" />,

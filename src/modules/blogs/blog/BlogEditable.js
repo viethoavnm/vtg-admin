@@ -249,7 +249,6 @@ class Blog extends React.Component {
                 })(
                   <Input.TextArea
                     rows={3}
-                    maxLength={300}
                     id="introduction"
                     placeholder={this.props.t('EDITOR_PLACEHOLDER')}
                   />)}
@@ -257,17 +256,19 @@ class Blog extends React.Component {
             <FormItem
               label={this.props.t('CONTENT')}>
               {this.state.error && <div id="content" className="error">{this.props.t('POST_REQUIRED_CONTENT_MIN')}</div>}
-              <Editor
-                allowUpload
-                value={content}
-                onChange={this.onContentChange}
-              />
+              <div className="editable__editor">
+                <Editor
+                  allowUpload
+                  value={content}
+                  onChange={this.onContentChange}
+                />
+              </div>
             </FormItem>
           </div>
           <div className="editable__footer">
-            <Button type="default" onClick={this.onBack}>{this.props.t('ACT_BACK')}</Button>
+            <Button type="default" className="mgL8" onClick={this.onBack}>{this.props.t('ACT_BACK')}</Button>
             <Button type="dashed" className="mgL8" onClick={this.onSaveDraft}>{this.props.t('ACT_SAVE_DRAFT')}</Button>
-            <Button type="primary" className="mgL8" onClick={this.onSubmit}>{this.props.t('ACT_POST')}</Button>
+            <Button type="primary" onClick={this.onSubmit}>{this.props.t('ACT_POST')}</Button>
           </div>
         </div>
       </Form >);

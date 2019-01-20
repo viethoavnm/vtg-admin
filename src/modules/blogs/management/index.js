@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { getBlogList, deleteBlog, updateStatus, deleteManyBlog } from '../BlogServices';
 import { initCategories, setPost } from '../blogReudux';
@@ -234,9 +234,9 @@ const getColumns = (self) => ([
     width: 148,
     render: (item) => (
       <span>
-        <a href={`/blog/post?postId=${item.id}`}>
+        <Link to={`/blog/preview/${item.id}`}>
           <FormattedMessage id="ACT_SHOW" />
-        </a>
+        </Link>
         <Divider type="vertical" />
         <a href="/modify"
           onClick={self.onOpenModify.bind(self, item)}>
