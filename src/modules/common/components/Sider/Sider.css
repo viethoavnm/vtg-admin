@@ -9,6 +9,11 @@
   transition: all 0.2s ease;
 }
 
+.sidebar .ant-layout-sider-children {
+  overflow: auto;
+  margin-bottom: 48px;
+}
+
 .sidebar .logo {
   display: flex;
   justify-content: center;

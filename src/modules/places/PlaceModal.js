@@ -232,7 +232,7 @@ class PlaceModal extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
-            {getFieldDecorator('introduction')(<Input.TextArea rows={3} placeholder={this.props.t('PLACE_HINT_DES')} />)}
+            {getFieldDecorator('introduction')(<Input.TextArea rows={3} placeholder={this.props.t('PLACE_HINT_DES')} maxLength={300} />)}
           </FormItem>
         </Form>
       </Modal>
