@@ -15,6 +15,9 @@ class HTMLEditor extends React.PureComponent {
       plugins: this.props.plugins,
       height: this.props.height,
       file_picker_types: 'image',
+      entity_encoding: 'utf-8',
+      content_style: 'img {max-width: 100%;}',
+      image_caption: true,
       file_picker_callback: function (cb, value, meta) {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -28,6 +31,7 @@ class HTMLEditor extends React.PureComponent {
       }
     };
     if (this.props.allowUpload) {
+      initProps.image_prepend_url = RESOURCES_PATH;
       initProps.images_upload_handler = this.onUploadImage;
     }
     this.element.style.visibility = '';
@@ -55,7 +59,7 @@ class HTMLEditor extends React.PureComponent {
     axios.post(UPLOAD_URL, formData)
       .then((data) => {
         if (data) {
-          success(RESOURCES_PATH + data.name);
+          success(data.name);
           if (this.props.onUploadImage) {
             this.onUploadImage(data);
           }
