@@ -29,7 +29,6 @@ class HTMLEditor extends React.PureComponent {
     };
     if (this.props.allowUpload) {
       initProps.images_upload_handler = this.onUploadImage;
-      initProps.image_prepend_url = RESOURCES_PATH;
     }
     this.element.style.visibility = '';
     getTinymce().init(initProps);
@@ -56,7 +55,7 @@ class HTMLEditor extends React.PureComponent {
     axios.post(UPLOAD_URL, formData)
       .then((data) => {
         if (data) {
-          success(data.name);
+          success(RESOURCES_PATH + data.name);
           if (this.props.onUploadImage) {
             this.onUploadImage(data);
           }
