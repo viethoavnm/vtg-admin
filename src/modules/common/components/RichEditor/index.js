@@ -18,7 +18,7 @@ class HTMLEditor extends React.PureComponent {
       entity_encoding: 'utf-8',
       content_style: 'img {max-width: 100%;}',
       image_caption: true,
-      file_picker_callback: function (cb, value, meta) {
+      file_picker_callback: function (cb) {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
         input.setAttribute('accept', 'image/*');
@@ -59,7 +59,7 @@ class HTMLEditor extends React.PureComponent {
     axios.post(UPLOAD_URL, formData)
       .then((data) => {
         if (data) {
-          success(data.name);
+          success(RESOURCES_PATH + data.name);
           if (this.props.onUploadImage) {
             this.onUploadImage(data);
           }
