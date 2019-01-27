@@ -31,7 +31,7 @@ class HTMLEditor extends React.PureComponent {
       }
     };
     if (this.props.allowUpload) {
-      initProps.image_prepend_url = RESOURCES_PATH;
+      // initProps.image_prepend_url = RESOURCES_PATH;
       initProps.images_upload_handler = this.onUploadImage;
     }
     this.element.style.visibility = '';
