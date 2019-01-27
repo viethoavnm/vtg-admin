@@ -16,8 +16,10 @@ class HTMLEditor extends React.PureComponent {
       height: this.props.height,
       file_picker_types: 'image',
       entity_encoding: 'utf-8',
-      content_style: 'img {max-width: 100%;}',
+      content_style: 'img {max-width: 100%;height: auto;}',
       image_caption: true,
+      relative_urls: false,
+      remove_script_host: false,
       file_picker_callback: function (cb) {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -31,7 +33,6 @@ class HTMLEditor extends React.PureComponent {
       }
     };
     if (this.props.allowUpload) {
-      // initProps.image_prepend_url = RESOURCES_PATH;
       initProps.images_upload_handler = this.onUploadImage;
     }
     this.element.style.visibility = '';
