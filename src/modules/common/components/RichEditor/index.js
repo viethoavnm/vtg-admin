@@ -20,13 +20,6 @@ class HTMLEditor extends React.PureComponent {
       image_caption: true,
       relative_urls: false,
       remove_script_host: false,
-      file_picker_callback: function (cb) {
-        const input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-        input.onchange = function () { cb(this.files[0]) };
-        input.click();
-      },
       setup: (editor) => {
         this.editor = editor;
         editor.on('init', this.onInit);
@@ -57,7 +50,7 @@ class HTMLEditor extends React.PureComponent {
   onUploadImage = (blobInfo, success, failure) => {
     const formData = new FormData();
     formData.append('file', blobInfo.blob());
-    axios.post(UPLOAD_URL, formData)
+    axios.post(UPLOAD_URL + '?isWatermark=true', formData)
       .then((data) => {
         if (data) {
           success(RESOURCES_PATH + data.name);

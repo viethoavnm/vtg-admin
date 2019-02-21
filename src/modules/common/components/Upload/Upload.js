@@ -9,7 +9,7 @@ export default class UploadWrapper extends React.PureComponent {
     const newProps = {
       ...{
         name: 'file',
-        action: UPLOAD_URL,
+        action: UPLOAD_URL + `?isWatermark=${!!this.props.isWatermark}`,
         accept: 'image/*',
         customRequest({
           action,

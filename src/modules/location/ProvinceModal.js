@@ -246,7 +246,7 @@ class ProvinceModal extends React.Component {
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
             {getFieldDecorator('introduction')(
-              <Input.TextArea rows={3} placeholder={this.props.t('CITY_HINT_DES')} />)}
+              <Input.TextArea rows={3} placeholder={this.props.t('CITY_HINT_DES')} maxLength="100" />)}
           </FormItem>
         </Form>
       </Modal>

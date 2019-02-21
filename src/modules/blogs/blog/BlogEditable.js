@@ -227,6 +227,7 @@ class Blog extends React.Component {
                   <Upload
                     id="bannerContentName"
                     accept="image/*"
+                    isWatermark
                     listType="picture-card">
                     {showUpload && <span>
                       <Icon type="plus" />

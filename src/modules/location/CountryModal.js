@@ -120,7 +120,7 @@ class CountryModal extends React.PureComponent {
             {...formItemLayout}
             label={<FormattedMessage id="DESCRIPTION" />}>
             {getFieldDecorator('description')(
-              <Input.TextArea rows={3} maxLength={300} placeholder={this.props.t('COUNTRY_HINT_DES')} />)}
+              <Input.TextArea rows={3} maxLength={100} placeholder={this.props.t('COUNTRY_HINT_DES')} />)}
           </FormItem>
         </Form>
       </Modal>
