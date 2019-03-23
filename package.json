@@ -2,7 +2,7 @@
   "name": "vtg-admin",
   "version": "0.1.0",
   "homepage": "https://spetrip.com/admin",
-  "proxy": "https://spetrip.com/vtgdev/",
+  "proxy": "https://spetrip.com/vtg/",
   "private": true,
   "dependencies": {
     "antd": "^3.9.3",

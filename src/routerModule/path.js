@@ -61,25 +61,16 @@ export default [{
   icon: 'profile'
 },
 {
-  title: 'MENU_WEBSITE_PROFILE',
-  url: '/website',
-  icon: 'global',
-  subComponent: []
+  url: '/setting/page-info',
+  title: 'MENU_PAGE_INFO',
+  icon: 'copyright',
+  component: 'SettingPageInfo',
 },
 {
+  url: '/setting/company-profile',
   title: 'MENU_COMPANY_PROFILE',
-  url: '/company',
-  icon: 'copyright',
-  subComponent: [{
-    url: '/setting/page-info',
-    title: 'MENU_PAGE_INFO',
-    component: 'SettingPageInfo',
-  },
-  {
-    url: '/setting/company-profile',
-    title: 'MENU_COMPANY_PROFILE',
-    component: 'SettingCompanyProfile',
-  }]
+  icon: 'global',
+  component: 'SettingCompanyProfile',
 },
 {
   url: '/setting',

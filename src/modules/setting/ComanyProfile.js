@@ -113,7 +113,7 @@ class CompanyProfile extends React.PureComponent {
               {/* --------------------------------------------------------------------------------------------------------------------------------------- */}
               <span className="text-strike"><FormattedMessage id="LOGO" /></span>
 
-              <FormItem {...layout} label={<FormattedMessage id="HEADER_LOGO" />}>
+              <FormItem {...layout} label={<FormattedMessage id="HEADER_LOGO" />} help="Kích thước ảnh nên dùng 120x46">
                 {getFieldDecorator('headerLogo',
                   {
                     valuePropName: 'fileList',
@@ -128,7 +128,7 @@ class CompanyProfile extends React.PureComponent {
                     </Upload>
                   )}
               </FormItem>
-              <FormItem {...layout} label={<FormattedMessage id="FOOTER_LOGO" />}>
+              <FormItem {...layout} label={<FormattedMessage id="FOOTER_LOGO" />} help="Kích thước ảnh nên dùng 150x150">
                 {getFieldDecorator('footerLogo',
                   {
                     valuePropName: 'fileList',
